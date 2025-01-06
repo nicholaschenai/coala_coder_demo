@@ -1,0 +1,18 @@
+[
+    {
+        "role": "system",
+        "content": "\nYou are an expert programmer tasked with solving the problem below.\n\nFollow the user's instructions to solve the problem.\nThe user can ask for analysis, code, or both.\n\n## Instructions\nWhen asked to output code,\n- Make sure to wrap your code in '```python' and '```' Markdown delimiters, \n- include exactly one block of code with the entire solution\n- No outside libraries are allowed. \n- Builtins are allowed.\n- If the task specifies a function name to be used, follow it strictly (be case sensitive!) and declare the that function last (helper functions are declared first).\n- DO NOT write any assert statements / tests.\n\n## Problem\n[BEGIN PROBLEM]\nWrite a Python function that satisfies the description below. Your code must strictly follow the function name and typings of the input and output specified in the assert statement below, and pass the assertion when executed.\n\"\"\"\nWrite a python function to find the maximum difference between any two elements in a given array.\nassert max_Abs_Diff((2,1,5,3)) == 4\n\"\"\"\n\n[END PROBLEM]\n"
+    },
+    {
+        "role": "user",
+        "content": "\n## Instructions\n\nReason through the problem and:\n1. Restate the problem in plain English\n2. Conceptualize a solution first in plain English\n3. Write a pseudocode solution\n4. Output the final Python 3 solution with your solution steps in comments.\n\nMake sure to wrap your code in '```python' and '```' Markdown delimiters, \nand include exactly one block of code with the entire solution.\n\nNo outside libraries are allowed.\nBuiltins are allowed.\n"
+    },
+    {
+        "role": "assistant",
+        "content": "1. **Restate the problem in plain English:**\n   The task is to create a function that takes a tuple of numbers and returns the maximum difference between any two numbers in that tuple.\n\n2. **Conceptualize a solution first in plain English:**\n   To find the maximum difference between any two elements in the tuple, we can identify the largest and smallest numbers in the tuple. The maximum difference will then be the difference between these two numbers. This can be achieved by iterating through the tuple to find the minimum and maximum values.\n\n3. **Write a pseudocode solution:**\n   ```\n   Function max_Abs_Diff(arr):\n       Initialize min_value to a very large number\n       Initialize max_value to a very small number\n       \n       For each number in arr:\n           If number is less than min_value:\n               Update min_value to number\n           If number is greater than max_value:\n               Update max_value to number\n       \n       Return max_value - min_value\n   ```\n\n4. **Output the final Python 3 solution with your solution steps in comments:**\n```python\ndef max_Abs_Diff(arr):\n    # Initialize min_value to a very large number\n    min_value = float('inf')\n    # Initialize max_value to a very small number\n    max_value = float('-inf')\n    \n    # Iterate through each number in the input tuple\n    for number in arr:\n        # Update min_value if the current number is smaller\n        if number < min_value:\n            min_value = number\n        # Update max_value if the current number is larger\n        if number > max_value:\n            max_value = number\n    \n    # Return the difference between max_value and min_value\n    return max_value - min_value\n```"
+    },
+    {
+        "role": "user",
+        "content": "\n[Environment Feedback]:\n    Note: Tests are automatically generated and can be wrong.\n\n    Tests passed:\n    assert max_Abs_Diff((2,1,5,3)) == 4\n\n    Tests failed:\n    None\n[/Environment Feedback]\n"
+    }
+]

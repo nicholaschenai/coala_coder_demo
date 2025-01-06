@@ -1,0 +1,18 @@
+[
+    {
+        "role": "system",
+        "content": "\nYou are an expert programmer tasked with solving the problem below.\n\nFollow the user's instructions to solve the problem.\nThe user can ask for analysis, code, or both.\n\n## Instructions\nWhen asked to output code,\n- Make sure to wrap your code in '```python' and '```' Markdown delimiters, \n- include exactly one block of code with the entire solution\n- No outside libraries are allowed. \n- Builtins are allowed.\n- If the task specifies a function name to be used, follow it strictly (be case sensitive!) and declare the that function last (helper functions are declared first).\n- DO NOT write any assert statements / tests.\n\n## Problem\n[BEGIN PROBLEM]\nWrite a Python function that satisfies the description below. Your code must strictly follow the function name and typings of the input and output specified in the assert statement below, and pass the assertion when executed.\n\"\"\"\nWrite a python function to find the element of a list having maximum length.\nassert Find_Max([['A'],['A','B'],['A','B','C']]) == ['A','B','C']\n\"\"\"\n\n[END PROBLEM]\n"
+    },
+    {
+        "role": "user",
+        "content": "\n## Instructions\n\nReason through the problem and:\n1. Restate the problem in plain English\n2. Conceptualize a solution first in plain English\n3. Write a pseudocode solution\n4. Output the final Python 3 solution with your solution steps in comments.\n\nMake sure to wrap your code in '```python' and '```' Markdown delimiters, \nand include exactly one block of code with the entire solution.\n\nNo outside libraries are allowed.\nBuiltins are allowed.\n"
+    },
+    {
+        "role": "assistant",
+        "content": "1. **Restate the problem in plain English**: \n   We need to create a function that takes a list of lists as input and returns the sublist that has the most elements. If there are multiple sublists with the same maximum length, we will return the first one encountered.\n\n2. **Conceptualize a solution first in plain English**: \n   - We will iterate through each sublist in the main list.\n   - For each sublist, we will check its length.\n   - We will keep track of the longest sublist found so far.\n   - At the end of the iteration, we will return the longest sublist.\n\n3. **Write a pseudocode solution**:\n   ```\n   function Find_Max(list_of_lists):\n       initialize max_length to 0\n       initialize max_list to None\n       for each sublist in list_of_lists:\n           if length of sublist is greater than max_length:\n               update max_length to length of sublist\n               update max_list to sublist\n       return max_list\n   ```\n\n4. **Output the final Python 3 solution with your solution steps in comments**:\n```python\ndef Find_Max(list_of_lists):\n    # Initialize the maximum length and the corresponding sublist\n    max_length = 0\n    max_list = None\n    \n    # Iterate through each sublist in the input list\n    for sublist in list_of_lists:\n        # Check if the current sublist is longer than the max_length found so far\n        if len(sublist) > max_length:\n            # Update max_length and max_list with the current sublist\n            max_length = len(sublist)\n            max_list = sublist\n            \n    # Return the sublist with the maximum length\n    return max_list\n```"
+    },
+    {
+        "role": "user",
+        "content": "\n[Environment Feedback]:\n    Note: Tests are automatically generated and can be wrong.\n\n    Tests passed:\n    assert Find_Max([['A'],['A','B'],['A','B','C']]) == ['A','B','C']\n\n    Tests failed:\n    None\n[/Environment Feedback]\n"
+    }
+]

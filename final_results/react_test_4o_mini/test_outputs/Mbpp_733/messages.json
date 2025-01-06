@@ -1,0 +1,18 @@
+[
+    {
+        "role": "system",
+        "content": "\nYou are an expert programmer tasked with solving the problem below.\n\nFollow the user's instructions to solve the problem.\nThe user can ask for analysis, code, or both.\n\n## Instructions\nWhen asked to output code,\n- Make sure to wrap your code in '```python' and '```' Markdown delimiters, \n- include exactly one block of code with the entire solution\n- No outside libraries are allowed. \n- Builtins are allowed.\n- If the task specifies a function name to be used, follow it strictly (be case sensitive!) and declare the that function last (helper functions are declared first).\n- DO NOT write any assert statements / tests.\n\n## Problem\n[BEGIN PROBLEM]\nWrite a Python function that satisfies the description below. Your code must strictly follow the function name and typings of the input and output specified in the assert statement below, and pass the assertion when executed.\n\"\"\"\nWrite a function to find the index of the first occurrence of a given number in a sorted array.\nassert find_first_occurrence([2, 5, 5, 5, 6, 6, 8, 9, 9, 9], 5) == 1\n\"\"\"\n\n[END PROBLEM]\n"
+    },
+    {
+        "role": "user",
+        "content": "\n## Instructions\n\nReason through the problem and:\n1. Restate the problem in plain English\n2. Conceptualize a solution first in plain English\n3. Write a pseudocode solution\n4. Output the final Python 3 solution with your solution steps in comments.\n\nMake sure to wrap your code in '```python' and '```' Markdown delimiters, \nand include exactly one block of code with the entire solution.\n\nNo outside libraries are allowed.\nBuiltins are allowed.\n"
+    },
+    {
+        "role": "assistant",
+        "content": "1. **Restate the problem in plain English**: \n   We need to create a function that takes a sorted list of numbers and a target number. The function should return the index of the first occurrence of the target number in the list. If the target number is not found, the function should return -1.\n\n2. **Conceptualize a solution first in plain English**: \n   Since the array is sorted, we can use a linear search to find the first occurrence of the target number. We will iterate through the list, and as soon as we find the target number, we will return its index. If we reach the end of the list without finding the target, we will return -1.\n\n3. **Write a pseudocode solution**:\n   ```\n   function find_first_occurrence(array, target):\n       for index from 0 to length of array - 1:\n           if array[index] is equal to target:\n               return index\n       return -1\n   ```\n\n4. **Output the final Python 3 solution with your solution steps in comments**:\n```python\ndef find_first_occurrence(array, target):\n    # Iterate through the array using an index\n    for index in range(len(array)):\n        # Check if the current element is equal to the target\n        if array[index] == target:\n            # Return the index of the first occurrence\n            return index\n    # If the target is not found, return -1\n    return -1\n```"
+    },
+    {
+        "role": "user",
+        "content": "\n[Environment Feedback]:\n    Note: Tests are automatically generated and can be wrong.\n\n    Tests passed:\n    assert find_first_occurrence([2, 5, 5, 5, 6, 6, 8, 9, 9, 9], 5) == 1\n\n    Tests failed:\n    None\n[/Environment Feedback]\n"
+    }
+]

@@ -1,0 +1,801 @@
+INFO - [test iter]: 252/378
+
+INFO - The task prompt is Write a Python function that satisfies the description below. Your code must strictly follow the function name and typings of the input and output specified in the assert statement below, and pass the assertion when executed.
+"""
+Write a function to find the median of two sorted lists of same siz...
+
+INFO - Attempting task_id Mbpp/622
+INFO - [35m Rollout attempt 1/4[0m
+INFO - LM call n parse attempt 1 / 3
+
+INFO - [Task id] Mbpp/622 [prompt] 
+You are an expert programmer tasked with solving the problem below.
+
+Follow the user's instructions to solve the problem.
+The user can ask for analysis, code, or both.
+
+## Instructions
+When asked to output code,
+- Make sure to wrap your code in '```python' and '```' Markdown delimiters, 
+- include exactly one block of code with the entire solution
+- No outside libraries are allowed. 
+- Builtins are allowed.
+- If the task specifies a function name to be used, follow it strictly (be case sensitive!) and declare the that function last (helper functions are declared first).
+- DO NOT write any assert statements / tests.
+
+## Problem
+[BEGIN PROBLEM]
+Write a Python function that satisfies the description below. Your code must strictly follow the function name and typings of the input and output specified in the assert statement below, and pass the assertion when executed.
+"""
+Write a function to find the median of two sorted lists of same size.
+assert get_median([1, 12, 15, 26, 38], [2, 13, 17, 30, 45], 5) == 16.0
+"""
+
+[END PROBLEM]
+
+INFO - [Task id] Mbpp/622 [prompt] 
+## Instructions
+
+Reason through the problem and:
+1. Restate the problem in plain English
+2. Conceptualize a solution first in plain English
+3. Write a pseudocode solution
+4. Output the final Python 3 solution with your solution steps in comments.
+
+Make sure to wrap your code in '```python' and '```' Markdown delimiters, 
+and include exactly one block of code with the entire solution.
+
+No outside libraries are allowed.
+Builtins are allowed.
+
+INFO - [Task id] Mbpp/622 [generation text] 1. **Restate the problem in plain English:**
+   We need to create a function that takes two sorted lists of the same size and calculates the median of the combined data from both lists.
+
+2. **Conceptualize a solution first in plain English:**
+   To find the median of two sorted lists, we can merge the two lists into one sorted list and then find the median of that merged list. Since both lists are of the same size, the median will be the average of the two middle elements in the merged list.
+
+3. **Write a pseudocode solution:**
+   - Define a function `get_median` that takes two lists and their size as parameters.
+   - Initialize an empty list to hold the merged elements.
+   - Use two pointers to traverse both lists and merge them into the new list in sorted order.
+   - Once merged, calculate the median:
+     - If the size is even, the median is the average of the two middle elements.
+     - If the size is odd, the median is the middle element.
+   - Return the median.
+
+4. **Output the final Python 3 solution with your solution steps in comments:**
+
+```python
+def merge_sorted_lists(list1, list2, size):
+    merged = []
+    i, j = 0, 0
+    
+    # Merge the two sorted lists
+    while i < size and j < size:
+        if list1[i] < list2[j]:
+            merged.append(list1[i])
+            i += 1
+        else:
+            merged.append(list2[j])
+            j += 1
+    
+    # If there are remaining elements in list1
+    while i < size:
+        merged.append(list1[i])
+        i += 1
+    
+    # If there are remaining elements in list2
+    while j < size:
+        merged.append(list2[j])
+        j += 1
+    
+    return merged
+
+def get_median(list1, list2, size):
+    # Merge the two sorted lists
+    merged = merge_sorted_lists(list1, list2, size)
+    
+    # Calculate the median
+    mid_index = size // 2
+    if size % 2 == 0:
+        # If even, average the two middle elements
+        median = (merged[mid_index - 1] + merged[mid_index]) / 2
+    else:
+        # If odd, take the middle element
+        median = merged[mid_index]
+    
+    return median
+```
+INFO - program_code:
+ 
+def merge_sorted_lists(list1, list2, size):
+    merged = []
+    i, j = 0, 0
+    
+    # Merge the two sorted lists
+    while i < size and j < size:
+        if list1[i] < list2[j]:
+            merged.append(list1[i])
+            i += 1
+        else:
+            merged.append(list2[j])
+            j += 1
+    
+    # If there are remaining elements in list1
+    while i < size:
+        merged.append(list1[i])
+        i += 1
+    
+    # If there are remaining elements in list2
+    while j < size:
+        merged.append(list2[j])
+        j += 1
+    
+    return merged
+
+def get_median(list1, list2, size):
+    # Merge the two sorted lists
+    merged = merge_sorted_lists(list1, list2, size)
+    
+    # Calculate the median
+    mid_index = size // 2
+    if size % 2 == 0:
+        # If even, average the two middle elements
+        median = (merged[mid_index - 1] + merged[mid_index]) / 2
+    else:
+        # If odd, take the middle element
+        median = merged[mid_index]
+    
+    return median
+
+
+INFO - program_name:
+ get_median
+
+INFO - dependencies:
+ []
+
+INFO - raw_msg:
+ 1. **Restate the problem in plain English:**
+   We need to create a function that takes two sorted lists of the same size and calculates the median of the combined data from both lists.
+
+2. **Conceptualize a solution first in plain English:**
+   To find the median of two sorted lists, we can merge the two lists into one sorted list and then find the median of that merged list. Since both lists are of the same size, the median will be the average of the two middle elements in the merged list.
+
+3. **Write a pseudocode solution:**
+   - Define a function `get_median` that takes two lists and their size as parameters.
+   - Initialize an empty list to hold the merged elements.
+   - Use two pointers to traverse both lists and merge them into the new list in sorted order.
+   - Once merged, calculate the median:
+     - If the size is even, the median is the average of the two middle elements.
+     - If the size is odd, the median is the middle element.
+   - Return the median.
+
+4. **Output the final Python 3 solution with your solution steps in comments:**
+
+```python
+def merge_sorted_lists(list1, list2, size):
+    merged = []
+    i, j = 0, 0
+    
+    # Merge the two sorted lists
+    while i < size and j < size:
+        if list1[i] < list2[j]:
+            merged.append(list1[i])
+            i += 1
+        else:
+            merged.append(list2[j])
+            j += 1
+    
+    # If there are remaining elements in list1
+    while i < size:
+        merged.append(list1[i])
+        i += 1
+    
+    # If there are remaining elements in list2
+    while j < size:
+        merged.append(list2[j])
+        j += 1
+    
+    return merged
+
+def get_median(list1, list2, size):
+    # Merge the two sorted lists
+    merged = merge_sorted_lists(list1, list2, size)
+    
+    # Calculate the median
+    mid_index = size // 2
+    if size % 2 == 0:
+        # If even, average the two middle elements
+        median = (merged[mid_index - 1] + merged[mid_index]) / 2
+    else:
+        # If odd, take the middle element
+        median = merged[mid_index]
+    
+    return median
+```
+
+INFO - no_parent:
+ True
+
+INFO - full code to be executed: 
+ 
+def merge_sorted_lists(list1, list2, size):
+    merged = []
+    i, j = 0, 0
+    
+    # Merge the two sorted lists
+    while i < size and j < size:
+        if list1[i] < list2[j]:
+            merged.append(list1[i])
+            i += 1
+        else:
+            merged.append(list2[j])
+            j += 1
+    
+    # If there are remaining elements in list1
+    while i < size:
+        merged.append(list1[i])
+        i += 1
+    
+    # If there are remaining elements in list2
+    while j < size:
+        merged.append(list2[j])
+        j += 1
+    
+    return merged
+
+def get_median(list1, list2, size):
+    # Merge the two sorted lists
+    merged = merge_sorted_lists(list1, list2, size)
+    
+    # Calculate the median
+    mid_index = size // 2
+    if size % 2 == 0:
+        # If even, average the two middle elements
+        median = (merged[mid_index - 1] + merged[mid_index]) / 2
+    else:
+        # If odd, take the middle element
+        median = merged[mid_index]
+    
+    return median
+
+
+INFO - obs: Note: Tests are automatically generated and can be wrong.
+
+Tests passed:
+None
+
+Tests failed:
+assert get_median([1, 12, 15, 26, 38], [2, 13, 17, 30, 45], 5) == 16.0 # output: 12
+reward: False
+done: None
+info: {'individual_results': (False,)}
+INFO - [35m Rollout attempt 2/4[0m
+INFO - LM call n parse attempt 1 / 3
+
+INFO - [Task id] Mbpp/622 [prompt] 
+You are an expert programmer tasked with solving the problem below.
+
+Follow the user's instructions to solve the problem.
+The user can ask for analysis, code, or both.
+
+## Instructions
+When asked to output code,
+- Make sure to wrap your code in '```python' and '```' Markdown delimiters, 
+- include exactly one block of code with the entire solution
+- No outside libraries are allowed. 
+- Builtins are allowed.
+- If the task specifies a function name to be used, follow it strictly (be case sensitive!) and declare the that function last (helper functions are declared first).
+- DO NOT write any assert statements / tests.
+
+## Problem
+[BEGIN PROBLEM]
+Write a Python function that satisfies the description below. Your code must strictly follow the function name and typings of the input and output specified in the assert statement below, and pass the assertion when executed.
+"""
+Write a function to find the median of two sorted lists of same size.
+assert get_median([1, 12, 15, 26, 38], [2, 13, 17, 30, 45], 5) == 16.0
+"""
+
+[END PROBLEM]
+
+INFO - [Task id] Mbpp/622 [prompt] 
+## Instructions
+
+Reason through the problem and:
+1. Restate the problem in plain English
+2. Conceptualize a solution first in plain English
+3. Write a pseudocode solution
+4. Output the final Python 3 solution with your solution steps in comments.
+
+Make sure to wrap your code in '```python' and '```' Markdown delimiters, 
+and include exactly one block of code with the entire solution.
+
+No outside libraries are allowed.
+Builtins are allowed.
+
+INFO - [Task id] Mbpp/622 [prompt] 1. **Restate the problem in plain English:**
+   We need to create a function that takes two sorted lists of the same size and calculates the median of the combined data from both lists.
+
+2. **Conceptualize a solution first in plain English:**
+   To find the median of two sorted lists, we can merge the two lists into one sorted list and then find the median of that merged list. Since both lists are of the same size, the median will be the average of the two middle elements in the merged list.
+
+3. **Write a pseudocode solution:**
+   - Define a function `get_median` that takes two lists and their size as parameters.
+   - Initialize an empty list to hold the merged elements.
+   - Use two pointers to traverse both lists and merge them into the new list in sorted order.
+   - Once merged, calculate the median:
+     - If the size is even, the median is the average of the two middle elements.
+     - If the size is odd, the median is the middle element.
+   - Return the median.
+
+4. **Output the final Python 3 solution with your solution steps in comments:**
+
+```python
+def merge_sorted_lists(list1, list2, size):
+    merged = []
+    i, j = 0, 0
+    
+    # Merge the two sorted lists
+    while i < size and j < size:
+        if list1[i] < list2[j]:
+            merged.append(list1[i])
+            i += 1
+        else:
+            merged.append(list2[j])
+            j += 1
+    
+    # If there are remaining elements in list1
+    while i < size:
+        merged.append(list1[i])
+        i += 1
+    
+    # If there are remaining elements in list2
+    while j < size:
+        merged.append(list2[j])
+        j += 1
+    
+    return merged
+
+def get_median(list1, list2, size):
+    # Merge the two sorted lists
+    merged = merge_sorted_lists(list1, list2, size)
+    
+    # Calculate the median
+    mid_index = size // 2
+    if size % 2 == 0:
+        # If even, average the two middle elements
+        median = (merged[mid_index - 1] + merged[mid_index]) / 2
+    else:
+        # If odd, take the middle element
+        median = merged[mid_index]
+    
+    return median
+```
+INFO - [Task id] Mbpp/622 [prompt] 
+[Environment Feedback]:
+    Note: Tests are automatically generated and can be wrong.
+
+    Tests passed:
+    None
+
+    Tests failed:
+    assert get_median([1, 12, 15, 26, 38], [2, 13, 17, 30, 45], 5) == 16.0 # output: 12
+[/Environment Feedback]
+
+INFO - [Task id] Mbpp/622 [prompt] 
+The code doesn't pass all the tests.
+
+## Instructions
+- First, think step-by-step about why your code is wrong.
+- Then, think step-by-step about where you went wrong in your latest solution.
+
+INFO - [Task id] Mbpp/622 [generation text] Let's analyze the problem step-by-step to identify where the code went wrong.
+
+1. **Understanding the Median Calculation:**
+   The median of two sorted lists of the same size should be calculated from the combined sorted list. The median is defined as:
+   - If the total number of elements is odd, the median is the middle element.
+   - If the total number of elements is even, the median is the average of the two middle elements.
+
+2. **Identifying the Issue:**
+   In the provided code, the merging process is correct, but the calculation of the median is not properly handling the case when the size is odd or even. The median should be calculated based on the merged list's length, which is `2 * size` (since both lists are of the same size).
+
+3. **Where I Went Wrong:**
+   - The merging logic is correct, but the median calculation logic does not account for the fact that the merged list will have `2 * size` elements.
+   - The median calculation should always consider the two middle elements of the merged list, regardless of whether the size is odd or even.
+
+4. **Correcting the Code:**
+   I need to adjust the median calculation to always take the average of the two middle elements from the merged list, since the total number of elements will always be even (2 * size).
+
+Now, let's implement the corrected solution.
+
+```python
+def merge_sorted_lists(list1, list2, size):
+    merged = []
+    i, j = 0, 0
+    
+    # Merge the two sorted lists
+    while i < size and j < size:
+        if list1[i] < list2[j]:
+            merged.append(list1[i])
+            i += 1
+        else:
+            merged.append(list2[j])
+            j += 1
+    
+    # If there are remaining elements in list1
+    while i < size:
+        merged.append(list1[i])
+        i += 1
+    
+    # If there are remaining elements in list2
+    while j < size:
+        merged.append(list2[j])
+        j += 1
+    
+    return merged
+
+def get_median(list1, list2, size):
+    # Merge the two sorted lists
+    merged = merge_sorted_lists(list1, list2, size)
+    
+    # Calculate the median
+    mid_index = size  # Since merged list has 2 * size elements
+    median = (merged[mid_index - 1] + merged[mid_index]) / 2
+    
+    return median
+```
+INFO - LM call n parse attempt 1 / 3
+
+INFO - [Task id] Mbpp/622 [prompt] 
+You are an expert programmer tasked with solving the problem below.
+
+Follow the user's instructions to solve the problem.
+The user can ask for analysis, code, or both.
+
+## Instructions
+When asked to output code,
+- Make sure to wrap your code in '```python' and '```' Markdown delimiters, 
+- include exactly one block of code with the entire solution
+- No outside libraries are allowed. 
+- Builtins are allowed.
+- If the task specifies a function name to be used, follow it strictly (be case sensitive!) and declare the that function last (helper functions are declared first).
+- DO NOT write any assert statements / tests.
+
+## Problem
+[BEGIN PROBLEM]
+Write a Python function that satisfies the description below. Your code must strictly follow the function name and typings of the input and output specified in the assert statement below, and pass the assertion when executed.
+"""
+Write a function to find the median of two sorted lists of same size.
+assert get_median([1, 12, 15, 26, 38], [2, 13, 17, 30, 45], 5) == 16.0
+"""
+
+[END PROBLEM]
+
+INFO - [Task id] Mbpp/622 [prompt] 
+## Instructions
+
+Reason through the problem and:
+1. Restate the problem in plain English
+2. Conceptualize a solution first in plain English
+3. Write a pseudocode solution
+4. Output the final Python 3 solution with your solution steps in comments.
+
+Make sure to wrap your code in '```python' and '```' Markdown delimiters, 
+and include exactly one block of code with the entire solution.
+
+No outside libraries are allowed.
+Builtins are allowed.
+
+INFO - [Task id] Mbpp/622 [prompt] 1. **Restate the problem in plain English:**
+   We need to create a function that takes two sorted lists of the same size and calculates the median of the combined data from both lists.
+
+2. **Conceptualize a solution first in plain English:**
+   To find the median of two sorted lists, we can merge the two lists into one sorted list and then find the median of that merged list. Since both lists are of the same size, the median will be the average of the two middle elements in the merged list.
+
+3. **Write a pseudocode solution:**
+   - Define a function `get_median` that takes two lists and their size as parameters.
+   - Initialize an empty list to hold the merged elements.
+   - Use two pointers to traverse both lists and merge them into the new list in sorted order.
+   - Once merged, calculate the median:
+     - If the size is even, the median is the average of the two middle elements.
+     - If the size is odd, the median is the middle element.
+   - Return the median.
+
+4. **Output the final Python 3 solution with your solution steps in comments:**
+
+```python
+def merge_sorted_lists(list1, list2, size):
+    merged = []
+    i, j = 0, 0
+    
+    # Merge the two sorted lists
+    while i < size and j < size:
+        if list1[i] < list2[j]:
+            merged.append(list1[i])
+            i += 1
+        else:
+            merged.append(list2[j])
+            j += 1
+    
+    # If there are remaining elements in list1
+    while i < size:
+        merged.append(list1[i])
+        i += 1
+    
+    # If there are remaining elements in list2
+    while j < size:
+        merged.append(list2[j])
+        j += 1
+    
+    return merged
+
+def get_median(list1, list2, size):
+    # Merge the two sorted lists
+    merged = merge_sorted_lists(list1, list2, size)
+    
+    # Calculate the median
+    mid_index = size // 2
+    if size % 2 == 0:
+        # If even, average the two middle elements
+        median = (merged[mid_index - 1] + merged[mid_index]) / 2
+    else:
+        # If odd, take the middle element
+        median = merged[mid_index]
+    
+    return median
+```
+INFO - [Task id] Mbpp/622 [prompt] 
+[Environment Feedback]:
+    Note: Tests are automatically generated and can be wrong.
+
+    Tests passed:
+    None
+
+    Tests failed:
+    assert get_median([1, 12, 15, 26, 38], [2, 13, 17, 30, 45], 5) == 16.0 # output: 12
+[/Environment Feedback]
+
+INFO - [Task id] Mbpp/622 [prompt] 
+The code doesn't pass all the tests.
+
+## Instructions
+- First, think step-by-step about why your code is wrong.
+- Then, think step-by-step about where you went wrong in your latest solution.
+
+INFO - [Task id] Mbpp/622 [prompt] Let's analyze the problem step-by-step to identify where the code went wrong.
+
+1. **Understanding the Median Calculation:**
+   The median of two sorted lists of the same size should be calculated from the combined sorted list. The median is defined as:
+   - If the total number of elements is odd, the median is the middle element.
+   - If the total number of elements is even, the median is the average of the two middle elements.
+
+2. **Identifying the Issue:**
+   In the provided code, the merging process is correct, but the calculation of the median is not properly handling the case when the size is odd or even. The median should be calculated based on the merged list's length, which is `2 * size` (since both lists are of the same size).
+
+3. **Where I Went Wrong:**
+   - The merging logic is correct, but the median calculation logic does not account for the fact that the merged list will have `2 * size` elements.
+   - The median calculation should always consider the two middle elements of the merged list, regardless of whether the size is odd or even.
+
+4. **Correcting the Code:**
+   I need to adjust the median calculation to always take the average of the two middle elements from the merged list, since the total number of elements will always be even (2 * size).
+
+Now, let's implement the corrected solution.
+
+```python
+def merge_sorted_lists(list1, list2, size):
+    merged = []
+    i, j = 0, 0
+    
+    # Merge the two sorted lists
+    while i < size and j < size:
+        if list1[i] < list2[j]:
+            merged.append(list1[i])
+            i += 1
+        else:
+            merged.append(list2[j])
+            j += 1
+    
+    # If there are remaining elements in list1
+    while i < size:
+        merged.append(list1[i])
+        i += 1
+    
+    # If there are remaining elements in list2
+    while j < size:
+        merged.append(list2[j])
+        j += 1
+    
+    return merged
+
+def get_median(list1, list2, size):
+    # Merge the two sorted lists
+    merged = merge_sorted_lists(list1, list2, size)
+    
+    # Calculate the median
+    mid_index = size  # Since merged list has 2 * size elements
+    median = (merged[mid_index - 1] + merged[mid_index]) / 2
+    
+    return median
+```
+INFO - [Task id] Mbpp/622 [prompt] 
+## Instructions
+Now, given your insights, try to fix the solution. 
+Output a block of correct python3 code to be executed and evaluated again. 
+
+Make sure to wrap your code in '```python' and '```' Markdown delimiters.
+
+INFO - [Task id] Mbpp/622 [generation text] Here is the corrected Python code that properly calculates the median of two sorted lists of the same size:
+
+```python
+def merge_sorted_lists(list1, list2, size):
+    merged = []
+    i, j = 0, 0
+    
+    # Merge the two sorted lists
+    while i < size and j < size:
+        if list1[i] < list2[j]:
+            merged.append(list1[i])
+            i += 1
+        else:
+            merged.append(list2[j])
+            j += 1
+    
+    # If there are remaining elements in list1
+    while i < size:
+        merged.append(list1[i])
+        i += 1
+    
+    # If there are remaining elements in list2
+    while j < size:
+        merged.append(list2[j])
+        j += 1
+    
+    return merged
+
+def get_median(list1, list2, size):
+    # Merge the two sorted lists
+    merged = merge_sorted_lists(list1, list2, size)
+    
+    # Calculate the median
+    mid_index = size  # Since merged list has 2 * size elements
+    median = (merged[mid_index - 1] + merged[mid_index]) / 2
+    
+    return median
+```
+INFO - program_code:
+ 
+def merge_sorted_lists(list1, list2, size):
+    merged = []
+    i, j = 0, 0
+    
+    # Merge the two sorted lists
+    while i < size and j < size:
+        if list1[i] < list2[j]:
+            merged.append(list1[i])
+            i += 1
+        else:
+            merged.append(list2[j])
+            j += 1
+    
+    # If there are remaining elements in list1
+    while i < size:
+        merged.append(list1[i])
+        i += 1
+    
+    # If there are remaining elements in list2
+    while j < size:
+        merged.append(list2[j])
+        j += 1
+    
+    return merged
+
+def get_median(list1, list2, size):
+    # Merge the two sorted lists
+    merged = merge_sorted_lists(list1, list2, size)
+    
+    # Calculate the median
+    mid_index = size  # Since merged list has 2 * size elements
+    median = (merged[mid_index - 1] + merged[mid_index]) / 2
+    
+    return median
+
+
+INFO - program_name:
+ get_median
+
+INFO - dependencies:
+ []
+
+INFO - raw_msg:
+ Here is the corrected Python code that properly calculates the median of two sorted lists of the same size:
+
+```python
+def merge_sorted_lists(list1, list2, size):
+    merged = []
+    i, j = 0, 0
+    
+    # Merge the two sorted lists
+    while i < size and j < size:
+        if list1[i] < list2[j]:
+            merged.append(list1[i])
+            i += 1
+        else:
+            merged.append(list2[j])
+            j += 1
+    
+    # If there are remaining elements in list1
+    while i < size:
+        merged.append(list1[i])
+        i += 1
+    
+    # If there are remaining elements in list2
+    while j < size:
+        merged.append(list2[j])
+        j += 1
+    
+    return merged
+
+def get_median(list1, list2, size):
+    # Merge the two sorted lists
+    merged = merge_sorted_lists(list1, list2, size)
+    
+    # Calculate the median
+    mid_index = size  # Since merged list has 2 * size elements
+    median = (merged[mid_index - 1] + merged[mid_index]) / 2
+    
+    return median
+```
+
+INFO - no_parent:
+ True
+
+INFO - full code to be executed: 
+ 
+def merge_sorted_lists(list1, list2, size):
+    merged = []
+    i, j = 0, 0
+    
+    # Merge the two sorted lists
+    while i < size and j < size:
+        if list1[i] < list2[j]:
+            merged.append(list1[i])
+            i += 1
+        else:
+            merged.append(list2[j])
+            j += 1
+    
+    # If there are remaining elements in list1
+    while i < size:
+        merged.append(list1[i])
+        i += 1
+    
+    # If there are remaining elements in list2
+    while j < size:
+        merged.append(list2[j])
+        j += 1
+    
+    return merged
+
+def get_median(list1, list2, size):
+    # Merge the two sorted lists
+    merged = merge_sorted_lists(list1, list2, size)
+    
+    # Calculate the median
+    mid_index = size  # Since merged list has 2 * size elements
+    median = (merged[mid_index - 1] + merged[mid_index]) / 2
+    
+    return median
+
+
+INFO - obs: Note: Tests are automatically generated and can be wrong.
+
+Tests passed:
+assert get_median([1, 12, 15, 26, 38], [2, 13, 17, 30, 45], 5) == 16.0
+
+Tests failed:
+None
+reward: True
+done: None
+info: {'individual_results': (True,)}
+INFO - acc:237/252 = 94.05%
