@@ -12,10 +12,13 @@ from agent_expt_suite.eval_setup.log import VerboseHandler
 
 from data_tools.dataset_registry_updates import dataset_registry_updates
 
+from config.experiment_args import add_experiment_args
+
 
 def get_args() -> argparse.Namespace:
     parser = get_base_agent_parser()
     add_base_voyager_args(parser)
+    add_experiment_args(parser)
     return parser.parse_args()
 
 def main(args):

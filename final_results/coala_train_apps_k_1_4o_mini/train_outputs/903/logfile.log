@@ -1,0 +1,962 @@
+INFO - DB skill doc count: 0
+
+INFO - DB non_func doc count: 53
+
+INFO - DB semantic doc count: 429
+
+INFO - DB summaries doc count: 68
+
+INFO - DB reflections doc count: 68
+
+INFO - DB episodic doc count: 123
+
+INFO - [train iter]: 68/100 
+
+INFO - The task prompt is Kabir likes Tara's smile and wants to look at her smile. They are sitting in the class and you are friends with Kabir. You have to place a mirror (point size)  in the front wall of the class so that Kabir can have a glimpse of Tara's smile.
+Consider the front wall as x-axis . You are given the  c...
+
+INFO - Attempting task_id 903
+INFO - LM call n parse attempt 1 / 3
+
+INFO - [Task id] 903 [prompt] 
+You are an expert programmer tasked with solving the problem below.
+
+Follow the user's instructions to solve the problem.
+The user can ask for analysis, code, or both.
+
+## Instructions
+When asked to output code,
+- Make sure to wrap your code in '```python' and '```' Markdown delimiters, 
+- include exactly one block of code with the entire solution
+- No outside libraries are allowed. 
+- Builtins are allowed.
+- If the task specifies a function name to be used, follow it strictly (be case sensitive!) and declare the that function last (helper functions are declared first).
+- DO NOT write any assert statements / tests.
+
+## Problem
+[BEGIN PROBLEM]
+Kabir likes Tara's smile and wants to look at her smile. They are sitting in the class and you are friends with Kabir. You have to place a mirror (point size)  in the front wall of the class so that Kabir can have a glimpse of Tara's smile.
+Consider the front wall as x-axis . You are given the  coordinates of position of Kabir (x1,y1)$(x1,y1)$ and Tara  (x2,y2)$(x2,y2)$. Find the position where the mirror should be placed. 
+
+-----Input:-----
+- First line will contain T$T$, number of testcases. Then the testcases follow. 
+- First line of each testcase contains two integers x1,y1$x1, y1$.
+- Second line of each testcase contains two integers x2,y2$x2, y2$. 
+
+-----Output:-----
+For each testcase, print the x-coordinate of the mirror. Absolute error of 10−2$10^{−2}$ is allowed.
+
+-----Constraints:-----
+- 1≤T≤1000$1 \leq T \leq 1000$
+- 1≤x1,y1,x2,y2≤105$1 \leq x1,y1,x2,y2 \leq 10^5 $
+
+-----Sample Input:-----
+1
+1 1
+
+4 4
+
+-----Sample Output:-----
+1.60
+
+The output code needs to read from and write to standard IO
+
+
+[END PROBLEM]
+
+INFO - [Task id] 903 [prompt] 
+## Instructions
+
+Reason through the problem and:
+1. Restate the problem in plain English
+2. Conceptualize a solution first in plain English
+3. Write a pseudocode solution
+4. Output the final Python 3 solution with your solution steps in comments.
+
+Make sure to wrap your code in '```python' and '```' Markdown delimiters, 
+and include exactly one block of code with the entire solution.
+
+No outside libraries are allowed.
+Builtins are allowed.
+
+INFO - [Task id] 903 [generation text] 1. **Restate the problem in plain English:**
+   We need to determine the position on the x-axis (the front wall of the classroom) where a mirror should be placed so that Kabir can see Tara's smile. Kabir and Tara are positioned at given coordinates in a 2D space, and we need to calculate the x-coordinate of the mirror based on their positions.
+
+2. **Conceptualize a solution first in plain English:**
+   To find the position of the mirror, we can use the concept of reflection. The mirror's position on the x-axis should be such that the angle of incidence (the angle at which Kabir's line of sight hits the mirror) is equal to the angle of reflection (the angle at which the light reflects towards Tara). This can be calculated using the formula derived from the geometry of the situation. The x-coordinate of the mirror can be found using the formula:
+   \[
+   x_{mirror} = \frac{x1 + x2}{2} - \frac{(y1 - y2) \cdot (x1 - x2)}{2 \cdot (y1 + y2)}
+   \]
+   This formula takes into account the positions of Kabir and Tara and gives us the correct x-coordinate for the mirror.
+
+3. **Write a pseudocode solution:**
+   ```
+   function find_mirror_position(T, test_cases):
+       for each test_case in test_cases:
+           read x1, y1
+           read x2, y2
+           calculate x_mirror using the formula
+           store x_mirror in results
+       return results
+   ```
+
+4. **Output the final Python 3 solution with your solution steps in comments:**
+```python
+def find_mirror_position(T, test_cases):
+    results = []
+    
+    for i in range(T):
+        # Read Kabir's coordinates
+        x1, y1 = test_cases[i][0]
+        # Read Tara's coordinates
+        x2, y2 = test_cases[i][1]
+        
+        # Calculate the x-coordinate of the mirror using the derived formula
+        x_mirror = (x1 + x2) / 2 - ((y1 - y2) * (x1 - x2)) / (2 * (y1 + y2))
+        
+        # Store the result formatted to 2 decimal places
+        results.append(f"{x_mirror:.2f}")
+    
+    # Print all results, each on a new line
+    print("\n".join(results))
+
+# Read input
+T = int(input())
+test_cases = []
+
+for _ in range(T):
+    x1, y1 = map(int, input().split())
+    x2, y2 = map(int, input().split())
+    test_cases.append(((x1, y1), (x2, y2)))
+
+# Call the function with the number of test cases and the test cases
+find_mirror_position(T, test_cases)
+```
+INFO - [35m Rollout attempt 1/4[0m
+INFO - [33m Retrieving 1 entries for db: episodic 
+ [0m
+INFO - Retrieved (score=0.4271):
+
+[Task]:
+    In africa jungle , there were zebra's who liked to spit.
+    There owner watched them for whole day and noted in his sheet where each zebra spitted.
+    Now he's in a confusion and wants to know if in the jungle there are two zebra's which spitted at each other.
+    Help him solve th...
+
+
+INFO - [33m Retrieving 1 entries for db: semantic 
+ [0m
+INFO - Retrieved (score=0.4688):
+Title: Circle-Circle Intersection
+Part: 1/1
+# Circle-Circle Intersection
+
+You are given two circles on a 2D plane, each one described as coordinates of its center and its radius. Find the points of their intersection (possible cases: one or two points, no intersection or circles coincide).
+
+## So...
+
+
+INFO - [33m Retrieving 1 entries for db: reflections 
+ [0m
+INFO - Retrieved (score=0.4563):
+The official solution employs a binary search approach to efficiently determine how many walls Chef needs to break through to reach Dr. Doof. This is a significant improvement over my initial approach, which involved a linear search through the walls for each query. 
+
+Key insights from the offici...
+
+
+INFO - [33m Retrieving 1 entries for db: summaries 
+ [0m
+INFO - Retrieved (score=0.3724):
+In this task, the goal was to determine if there are two zebras in a jungle that spit at each other based on their positions and spit distances. The solution involved using a dictionary to map each zebra's position to the position it spits at. The core concept was to check for reciprocal spitting...
+
+
+INFO - [33m Retrieving 1 entries for db: non_func 
+ [0m
+INFO - Retrieved (score=0.4729):
+
+[description for function: process_test_cases]
+This function processes multiple test cases by reading input data, which includes the number of walls and queries for each test case. It iterates through each test case, collecting the number of walls and their positions, as well as the queries that...
+
+
+INFO - Retrieved (score=0.3724): 
+[Summary]:
+    In this task, the goal was to determine if there are two zebras in a jungle that spit at each other based on their positions and spit distances. The solution involved using a dictionary to map each zebra's position to the position it spits at. The core concept was to check for rec...
+INFO - LM call n parse attempt 1 / 3
+
+INFO - [Task id] 903 [prompt] 
+You are an expert programmer tasked with solving the problem below.
+
+Follow the user's instructions to solve the problem.
+The user can ask for analysis, code, or both.
+
+## Instructions
+When asked to output code,
+- Make sure to wrap your code in '```python' and '```' Markdown delimiters, 
+- include exactly one block of code with the entire solution
+- No outside libraries are allowed. 
+- Builtins are allowed.
+- If the task specifies a function name to be used, follow it strictly (be case sensitive!) and declare the that function last (helper functions are declared first).
+- DO NOT write any assert statements / tests.
+
+## Problem
+[BEGIN PROBLEM]
+Kabir likes Tara's smile and wants to look at her smile. They are sitting in the class and you are friends with Kabir. You have to place a mirror (point size)  in the front wall of the class so that Kabir can have a glimpse of Tara's smile.
+Consider the front wall as x-axis . You are given the  coordinates of position of Kabir (x1,y1)$(x1,y1)$ and Tara  (x2,y2)$(x2,y2)$. Find the position where the mirror should be placed. 
+
+-----Input:-----
+- First line will contain T$T$, number of testcases. Then the testcases follow. 
+- First line of each testcase contains two integers x1,y1$x1, y1$.
+- Second line of each testcase contains two integers x2,y2$x2, y2$. 
+
+-----Output:-----
+For each testcase, print the x-coordinate of the mirror. Absolute error of 10−2$10^{−2}$ is allowed.
+
+-----Constraints:-----
+- 1≤T≤1000$1 \leq T \leq 1000$
+- 1≤x1,y1,x2,y2≤105$1 \leq x1,y1,x2,y2 \leq 10^5 $
+
+-----Sample Input:-----
+1
+1 1
+
+4 4
+
+-----Sample Output:-----
+1.60
+
+The output code needs to read from and write to standard IO
+
+
+[END PROBLEM]
+
+INFO - [Task id] 903 [prompt] 
+## Instructions
+
+Reason through the problem and:
+1. Restate the problem in plain English
+2. Conceptualize a solution first in plain English
+3. Write a pseudocode solution
+4. Output the final Python 3 solution with your solution steps in comments.
+
+Make sure to wrap your code in '```python' and '```' Markdown delimiters, 
+and include exactly one block of code with the entire solution.
+
+No outside libraries are allowed.
+Builtins are allowed.
+
+INFO - [Task id] 903 [prompt] 
+Also, here are some of your memories.
+Feel free to use the given information to aid your problem solving process if necessary.
+Do not confuse the memories with the problem statement.
+
+## Memories
+
+[Summary]:
+    In this task, the goal was to determine if there are two zebras in a jungle that spit at each other based on their positions and spit distances. The solution involved using a dictionary to map each zebra's position to the position it spits at. The core concept was to check for reciprocal spitting, meaning if zebra A spits at zebra B, then zebra B should also spit back at zebra A.
+
+    The approach was straightforward: first, populate a dictionary with each zebra's spit target, and then check if any zebra's spit target points back to its original position. This method efficiently checks for the required condition in linear time.
+
+    The final implementation successfully handled the input and output requirements, and the logic was validated against the provided test case. The solution was effective, and no unexpected errors occurred during the process. The key takeaway is the utility of using a dictionary for quick lookups, which is essential for problems involving relationships between elements. 
+
+    Here’s the final code snippet for reference:
+
+    ```python
+    def find_zebras(t, zebras):
+        spit_map = {}
+        for i in range(t):
+            a, b = zebras[i]
+            spit_map[a] = a + b
+    
+        for i in range(t):
+            a, b = zebras[i]
+            target_position = a + b
+            if target_position in spit_map and spit_map[target_position] == a:
+                print("YES")
+                return
+    
+        print("NO")
+
+    t = int(input())
+    zebras = []
+    for _ in range(t):
+        a, b = map(int, input().split())
+        zebras.append((a, b))
+
+    find_zebras(t, zebras)
+    ```
+[/Summary]
+
+
+INFO - [Task id] 903 [generation text] 1. **Restate the problem in plain English**: 
+   The task is to determine the position on the x-axis (the front wall of a classroom) where a mirror should be placed so that Kabir, who is sitting at a certain coordinate (x1, y1), can see Tara, who is sitting at another coordinate (x2, y2). The mirror will reflect Tara's position to Kabir's line of sight.
+
+2. **Conceptualize a solution first in plain English**: 
+   To find the position of the mirror, we need to calculate the x-coordinate where the reflection of Tara's position would meet the line of sight from Kabir. The mirror's position can be determined using the concept of similar triangles. The y-coordinate of the mirror will be 0 (since it lies on the x-axis), and we can use the properties of similar triangles to derive the x-coordinate of the mirror.
+
+3. **Write a pseudocode solution**:
+   ```
+   function find_mirror_position(T, test_cases):
+       for each test_case in test_cases:
+           read x1, y1
+           read x2, y2
+           # Calculate the x-coordinate of the mirror
+           mirror_x = (x1 * y2 + x2 * y1) / (y1 + y2)
+           print mirror_x
+       
+   read T
+   test_cases = []
+   for i from 1 to T:
+       read x1, y1
+       read x2, y2
+       add (x1, y1, x2, y2) to test_cases
+       
+   find_mirror_position(T, test_cases)
+   ```
+
+4. **Output the final Python 3 solution with your solution steps in comments**:
+```python
+def find_mirror_position(T, test_cases):
+    # Iterate through each test case
+    for x1, y1, x2, y2 in test_cases:
+        # Calculate the x-coordinate of the mirror using the formula derived from similar triangles
+        mirror_x = (x1 * y2 + x2 * y1) / (y1 + y2)
+        # Print the result with the required precision
+        print(f"{mirror_x:.2f}")
+
+# Read the number of test cases
+T = int(input())
+test_cases = []
+
+# Read each test case
+for _ in range(T):
+    x1, y1 = map(int, input().split())
+    x2, y2 = map(int, input().split())
+    test_cases.append((x1, y1, x2, y2))
+
+# Call the function to find and print the mirror positions
+find_mirror_position(T, test_cases)
+```
+INFO - program_code:
+ 
+def find_mirror_position(T, test_cases):
+    # Iterate through each test case
+    for x1, y1, x2, y2 in test_cases:
+        # Calculate the x-coordinate of the mirror using the formula derived from similar triangles
+        mirror_x = (x1 * y2 + x2 * y1) / (y1 + y2)
+        # Print the result with the required precision
+        print(f"{mirror_x:.2f}")
+
+# Read the number of test cases
+T = int(input())
+test_cases = []
+
+# Read each test case
+for _ in range(T):
+    x1, y1 = map(int, input().split())
+    x2, y2 = map(int, input().split())
+    test_cases.append((x1, y1, x2, y2))
+
+# Call the function to find and print the mirror positions
+find_mirror_position(T, test_cases)
+
+
+INFO - program_name:
+ find_mirror_position
+
+INFO - dependencies:
+ []
+
+INFO - raw_msg:
+ 1. **Restate the problem in plain English**: 
+   The task is to determine the position on the x-axis (the front wall of a classroom) where a mirror should be placed so that Kabir, who is sitting at a certain coordinate (x1, y1), can see Tara, who is sitting at another coordinate (x2, y2). The mirror will reflect Tara's position to Kabir's line of sight.
+
+2. **Conceptualize a solution first in plain English**: 
+   To find the position of the mirror, we need to calculate the x-coordinate where the reflection of Tara's position would meet the line of sight from Kabir. The mirror's position can be determined using the concept of similar triangles. The y-coordinate of the mirror will be 0 (since it lies on the x-axis), and we can use the properties of similar triangles to derive the x-coordinate of the mirror.
+
+3. **Write a pseudocode solution**:
+   ```
+   function find_mirror_position(T, test_cases):
+       for each test_case in test_cases:
+           read x1, y1
+           read x2, y2
+           # Calculate the x-coordinate of the mirror
+           mirror_x = (x1 * y2 + x2 * y1) / (y1 + y2)
+           print mirror_x
+       
+   read T
+   test_cases = []
+   for i from 1 to T:
+       read x1, y1
+       read x2, y2
+       add (x1, y1, x2, y2) to test_cases
+       
+   find_mirror_position(T, test_cases)
+   ```
+
+4. **Output the final Python 3 solution with your solution steps in comments**:
+```python
+def find_mirror_position(T, test_cases):
+    # Iterate through each test case
+    for x1, y1, x2, y2 in test_cases:
+        # Calculate the x-coordinate of the mirror using the formula derived from similar triangles
+        mirror_x = (x1 * y2 + x2 * y1) / (y1 + y2)
+        # Print the result with the required precision
+        print(f"{mirror_x:.2f}")
+
+# Read the number of test cases
+T = int(input())
+test_cases = []
+
+# Read each test case
+for _ in range(T):
+    x1, y1 = map(int, input().split())
+    x2, y2 = map(int, input().split())
+    test_cases.append((x1, y1, x2, y2))
+
+# Call the function to find and print the mirror positions
+find_mirror_position(T, test_cases)
+```
+
+INFO - no_parent:
+ False
+
+INFO - full code to be executed: 
+ 
+def find_mirror_position(T, test_cases):
+    # Iterate through each test case
+    for x1, y1, x2, y2 in test_cases:
+        # Calculate the x-coordinate of the mirror using the formula derived from similar triangles
+        mirror_x = (x1 * y2 + x2 * y1) / (y1 + y2)
+        # Print the result with the required precision
+        print(f"{mirror_x:.2f}")
+
+# Read the number of test cases
+T = int(input())
+test_cases = []
+
+# Read each test case
+for _ in range(T):
+    x1, y1 = map(int, input().split())
+    x2, y2 = map(int, input().split())
+    test_cases.append((x1, y1, x2, y2))
+
+# Call the function to find and print the mirror positions
+find_mirror_position(T, test_cases)
+
+
+INFO - obs: Note: Inputs/outputs here are automatically extracted/truncated so formatting may be a bit off.
+Tests passed:
+
+ Input: ['1', '1 1', '4 4'] Output: 1.60
+
+Tests failed:
+None
+reward: True
+done: None
+info: {'individual_results': [True]}
+INFO - Updated entry: 
+[Task]:
+    Kabir likes Tara's smile and wants to look at her smile. They are sitting in the class and you are friends with Kabir. You have to place a mirror (point size)  in the front wall of the class so that Kabir can have a glimpse of Tara's smile.
+    Consider the front wall as x-axis . You...,
+
+INFO - Metadata: {
+    "raw_msg": "1. **Restate the problem in plain English**: \n   The task is to determine the position on the x-axis (the front wall of a classroom) where a mirror should be placed so that Kabir, who is sitting at a certain coordinate (x1, y1), can see Tara, who is sitting at another coordinat...
+
+INFO - LM call n parse attempt 1 / 3
+
+INFO - [Task id] 903 [prompt] 
+You are an expert programmer tasked with solving the problem below.
+
+Follow the user's instructions to solve the problem.
+The user can ask for analysis, code, or both.
+
+## Instructions
+When asked to output code,
+- Make sure to wrap your code in '```python' and '```' Markdown delimiters, 
+- include exactly one block of code with the entire solution
+- No outside libraries are allowed. 
+- Builtins are allowed.
+- If the task specifies a function name to be used, follow it strictly (be case sensitive!) and declare the that function last (helper functions are declared first).
+- DO NOT write any assert statements / tests.
+
+## Problem
+[BEGIN PROBLEM]
+Kabir likes Tara's smile and wants to look at her smile. They are sitting in the class and you are friends with Kabir. You have to place a mirror (point size)  in the front wall of the class so that Kabir can have a glimpse of Tara's smile.
+Consider the front wall as x-axis . You are given the  coordinates of position of Kabir (x1,y1)$(x1,y1)$ and Tara  (x2,y2)$(x2,y2)$. Find the position where the mirror should be placed. 
+
+-----Input:-----
+- First line will contain T$T$, number of testcases. Then the testcases follow. 
+- First line of each testcase contains two integers x1,y1$x1, y1$.
+- Second line of each testcase contains two integers x2,y2$x2, y2$. 
+
+-----Output:-----
+For each testcase, print the x-coordinate of the mirror. Absolute error of 10−2$10^{−2}$ is allowed.
+
+-----Constraints:-----
+- 1≤T≤1000$1 \leq T \leq 1000$
+- 1≤x1,y1,x2,y2≤105$1 \leq x1,y1,x2,y2 \leq 10^5 $
+
+-----Sample Input:-----
+1
+1 1
+
+4 4
+
+-----Sample Output:-----
+1.60
+
+The output code needs to read from and write to standard IO
+
+
+[END PROBLEM]
+
+INFO - [Task id] 903 [prompt] 
+## Instructions
+
+Reason through the problem and:
+1. Restate the problem in plain English
+2. Conceptualize a solution first in plain English
+3. Write a pseudocode solution
+4. Output the final Python 3 solution with your solution steps in comments.
+
+Make sure to wrap your code in '```python' and '```' Markdown delimiters, 
+and include exactly one block of code with the entire solution.
+
+No outside libraries are allowed.
+Builtins are allowed.
+
+INFO - [Task id] 903 [prompt] 1. **Restate the problem in plain English**: 
+   The task is to determine the position on the x-axis (the front wall of a classroom) where a mirror should be placed so that Kabir, who is sitting at a certain coordinate (x1, y1), can see Tara, who is sitting at another coordinate (x2, y2). The mirror will reflect Tara's position to Kabir's line of sight.
+
+2. **Conceptualize a solution first in plain English**: 
+   To find the position of the mirror, we need to calculate the x-coordinate where the reflection of Tara's position would meet the line of sight from Kabir. The mirror's position can be determined using the concept of similar triangles. The y-coordinate of the mirror will be 0 (since it lies on the x-axis), and we can use the properties of similar triangles to derive the x-coordinate of the mirror.
+
+3. **Write a pseudocode solution**:
+   ```
+   function find_mirror_position(T, test_cases):
+       for each test_case in test_cases:
+           read x1, y1
+           read x2, y2
+           # Calculate the x-coordinate of the mirror
+           mirror_x = (x1 * y2 + x2 * y1) / (y1 + y2)
+           print mirror_x
+       
+   read T
+   test_cases = []
+   for i from 1 to T:
+       read x1, y1
+       read x2, y2
+       add (x1, y1, x2, y2) to test_cases
+       
+   find_mirror_position(T, test_cases)
+   ```
+
+4. **Output the final Python 3 solution with your solution steps in comments**:
+```python
+def find_mirror_position(T, test_cases):
+    # Iterate through each test case
+    for x1, y1, x2, y2 in test_cases:
+        # Calculate the x-coordinate of the mirror using the formula derived from similar triangles
+        mirror_x = (x1 * y2 + x2 * y1) / (y1 + y2)
+        # Print the result with the required precision
+        print(f"{mirror_x:.2f}")
+
+# Read the number of test cases
+T = int(input())
+test_cases = []
+
+# Read each test case
+for _ in range(T):
+    x1, y1 = map(int, input().split())
+    x2, y2 = map(int, input().split())
+    test_cases.append((x1, y1, x2, y2))
+
+# Call the function to find and print the mirror positions
+find_mirror_position(T, test_cases)
+```
+INFO - [Task id] 903 [prompt] 
+[Environment Feedback]:
+    Note: Inputs/outputs here are automatically extracted/truncated so formatting may be a bit off.
+    Tests passed:
+
+     Input: ['1', '1 1', '4 4'] Output: 1.60
+
+    Tests failed:
+    None
+[/Environment Feedback]
+
+INFO - [Task id] 903 [prompt] 
+## Instructions
+Now, summarize your attempts as a **standalone** document for your own future reference. (can skip formalities, be concise)
+
+- Only include the most relevant information and code snippets that could be useful in the future.
+- If you did not learn much from the current experience (e.g. the problem was too easy), feel free to write less or nothing at all.
+- Here are some ideas if the experience was useful:
+    - Identifying the core concepts and patterns that problem appears to test for
+    - Describing the strategies that seemed to work but did not, and vice versa
+    - Describing unexpected errors and how they were fixed
+
+Your summary should be at most a few paragraphs.
+
+INFO - [Task id] 903 [generation text] In this task, the goal was to determine the x-coordinate of a mirror placed on the x-axis so that Kabir can see Tara's reflection. The solution involved using the properties of similar triangles to derive the formula for the mirror's position. The formula used was:
+
+\[ \text{mirror\_x} = \frac{x1 \cdot y2 + x2 \cdot y1}{y1 + y2} \]
+
+This formula effectively calculates the x-coordinate based on the positions of Kabir and Tara.
+
+The implementation involved reading multiple test cases, processing each to extract the coordinates, and then applying the formula to compute the mirror's position. The output was formatted to two decimal places to meet the precision requirement.
+
+The code was straightforward and successfully passed the provided test cases, demonstrating that the approach was correct. No unexpected errors occurred during the implementation, and the solution adhered to the constraints and requirements specified in the problem statement. 
+
+Overall, this experience reinforced the importance of understanding geometric relationships in problems involving reflections and projections.
+INFO - LM call n parse attempt 1 / 3
+
+INFO - [Task id] 903 [prompt] 
+You are an expert programmer tasked with solving the problem below.
+
+Follow the user's instructions to solve the problem.
+The user can ask for analysis, code, or both.
+
+## Instructions
+When asked to output code,
+- Make sure to wrap your code in '```python' and '```' Markdown delimiters, 
+- include exactly one block of code with the entire solution
+- No outside libraries are allowed. 
+- Builtins are allowed.
+- If the task specifies a function name to be used, follow it strictly (be case sensitive!) and declare the that function last (helper functions are declared first).
+- DO NOT write any assert statements / tests.
+
+## Problem
+[BEGIN PROBLEM]
+Kabir likes Tara's smile and wants to look at her smile. They are sitting in the class and you are friends with Kabir. You have to place a mirror (point size)  in the front wall of the class so that Kabir can have a glimpse of Tara's smile.
+Consider the front wall as x-axis . You are given the  coordinates of position of Kabir (x1,y1)$(x1,y1)$ and Tara  (x2,y2)$(x2,y2)$. Find the position where the mirror should be placed. 
+
+-----Input:-----
+- First line will contain T$T$, number of testcases. Then the testcases follow. 
+- First line of each testcase contains two integers x1,y1$x1, y1$.
+- Second line of each testcase contains two integers x2,y2$x2, y2$. 
+
+-----Output:-----
+For each testcase, print the x-coordinate of the mirror. Absolute error of 10−2$10^{−2}$ is allowed.
+
+-----Constraints:-----
+- 1≤T≤1000$1 \leq T \leq 1000$
+- 1≤x1,y1,x2,y2≤105$1 \leq x1,y1,x2,y2 \leq 10^5 $
+
+-----Sample Input:-----
+1
+1 1
+
+4 4
+
+-----Sample Output:-----
+1.60
+
+The output code needs to read from and write to standard IO
+
+
+[END PROBLEM]
+
+INFO - [Task id] 903 [prompt] 
+## Instructions
+
+Reason through the problem and:
+1. Restate the problem in plain English
+2. Conceptualize a solution first in plain English
+3. Write a pseudocode solution
+4. Output the final Python 3 solution with your solution steps in comments.
+
+Make sure to wrap your code in '```python' and '```' Markdown delimiters, 
+and include exactly one block of code with the entire solution.
+
+No outside libraries are allowed.
+Builtins are allowed.
+
+INFO - [Task id] 903 [prompt] 1. **Restate the problem in plain English**: 
+   The task is to determine the position on the x-axis (the front wall of a classroom) where a mirror should be placed so that Kabir, who is sitting at a certain coordinate (x1, y1), can see Tara, who is sitting at another coordinate (x2, y2). The mirror will reflect Tara's position to Kabir's line of sight.
+
+2. **Conceptualize a solution first in plain English**: 
+   To find the position of the mirror, we need to calculate the x-coordinate where the reflection of Tara's position would meet the line of sight from Kabir. The mirror's position can be determined using the concept of similar triangles. The y-coordinate of the mirror will be 0 (since it lies on the x-axis), and we can use the properties of similar triangles to derive the x-coordinate of the mirror.
+
+3. **Write a pseudocode solution**:
+   ```
+   function find_mirror_position(T, test_cases):
+       for each test_case in test_cases:
+           read x1, y1
+           read x2, y2
+           # Calculate the x-coordinate of the mirror
+           mirror_x = (x1 * y2 + x2 * y1) / (y1 + y2)
+           print mirror_x
+       
+   read T
+   test_cases = []
+   for i from 1 to T:
+       read x1, y1
+       read x2, y2
+       add (x1, y1, x2, y2) to test_cases
+       
+   find_mirror_position(T, test_cases)
+   ```
+
+4. **Output the final Python 3 solution with your solution steps in comments**:
+```python
+def find_mirror_position(T, test_cases):
+    # Iterate through each test case
+    for x1, y1, x2, y2 in test_cases:
+        # Calculate the x-coordinate of the mirror using the formula derived from similar triangles
+        mirror_x = (x1 * y2 + x2 * y1) / (y1 + y2)
+        # Print the result with the required precision
+        print(f"{mirror_x:.2f}")
+
+# Read the number of test cases
+T = int(input())
+test_cases = []
+
+# Read each test case
+for _ in range(T):
+    x1, y1 = map(int, input().split())
+    x2, y2 = map(int, input().split())
+    test_cases.append((x1, y1, x2, y2))
+
+# Call the function to find and print the mirror positions
+find_mirror_position(T, test_cases)
+```
+INFO - [Task id] 903 [prompt] 
+[Environment Feedback]:
+    Note: Inputs/outputs here are automatically extracted/truncated so formatting may be a bit off.
+    Tests passed:
+
+     Input: ['1', '1 1', '4 4'] Output: 1.60
+
+    Tests failed:
+    None
+[/Environment Feedback]
+
+INFO - [Task id] 903 [prompt] 
+Below is the official solution (do exercise discretion as official solutions can also have mistakes).
+
+You will be reflecting on your attempts to solve the problem.
+This will be a **standalone** document for your own future reference. (can skip formalities, be concise)
+
+## Instructions
+- Only include the most relevant insights and code snippets that could be useful in the future.
+- If you did not learn much from the current experience (e.g. the problem was too easy / official solution was obvious), feel free to write less or nothing at all.
+- Here are some ideas if the experience was useful:
+    - If the official solution is insightful (e.g. better than yours in time and space complexity or more effective in breaking down the problem statement), distil the key approach of the official solution, step by step.
+    - If your approach failed the test cases, reason why the official solution works but yours does not
+
+Your reflection should be at most a few paragraphs.
+
+## Official solution
+# cook your dish here
+try:
+    t = int(input())
+    for _ in range(t):
+        p = [int(x) for x in input().split()]
+        q = [int(x) for x in input().split()]
+        
+        q[1] *= -1
+        m = (q[1]-p[1])/(q[0]-p[0])
+        c = p[1] - m*p[0]
+        
+        print("{:.2f}".format(-c/m))
+except:
+    pass
+
+INFO - [Task id] 903 [generation text] The official solution provides a different approach to solving the problem of finding the mirror's position. It uses the concept of linear equations to derive the x-coordinate of the mirror based on the coordinates of Kabir and Tara. 
+
+### Key Insights from the Official Solution:
+1. **Reflection Concept**: The solution reflects Tara's position across the x-axis by negating her y-coordinate. This allows the problem to be framed in terms of a line equation.
+  
+2. **Line Equation**: The slope (m) of the line connecting Kabir and Tara is calculated using the formula:
+   \[
+   m = \frac{(q[1] - p[1])}{(q[0] - p[0])}
+   \]
+   where \(p\) is Kabir's position and \(q\) is Tara's position.
+
+3. **Intercept Calculation**: The y-intercept (c) of the line is calculated using the point-slope form of the line equation:
+   \[
+   c = p[1] - m \cdot p[0]
+   \]
+
+4. **Mirror Position**: The x-coordinate of the mirror is derived from the equation of the line when y = 0 (the x-axis):
+   \[
+   x = -\frac{c}{m}
+   \]
+   This gives the position where the mirror should be placed.
+
+### Comparison with My Approach:
+- My approach used the concept of similar triangles to derive the mirror's position, which is valid but less direct than using linear equations.
+- The official solution is more concise and leverages the properties of lines, making it easier to understand and implement.
+- The official solution also handles input and output formatting more effectively, ensuring the result is printed with the required precision.
+
+### Conclusion:
+The official solution's method of using linear equations is a more straightforward approach to this problem. It emphasizes the importance of understanding geometric relationships and how they can be translated into algebraic equations. This experience highlights the value of exploring different mathematical perspectives when solving programming problems.
+INFO - Updated entry: In this task, the goal was to determine the x-coordinate of a mirror placed on the x-axis so that Kabir can see Tara's reflection. The solution involved using the properties of similar triangles to derive the formula for the mirror's position. The formula used was:
+
+\[ \text{mirror\_x} = \frac{x1...,
+
+INFO - Metadata: {
+    "task_id": 903
+}
+
+INFO - Updated entry: The official solution provides a different approach to solving the problem of finding the mirror's position. It uses the concept of linear equations to derive the x-coordinate of the mirror based on the coordinates of Kabir and Tara. 
+
+### Key Insights from the Official Solution:
+1. **Reflection ...,
+
+INFO - Metadata: {
+    "task_id": 903
+}
+
+INFO - LM call n parse attempt 1 / 3
+
+INFO - [Task id] 903 [prompt] 
+You are a helpful assistant that writes a description of the given function written in the Python programming language.
+
+1) Do not mention the function name.
+2) Do not mention anything about helper functions.
+3) There might be some helper functions before the main function, but you only need to describe the main function.
+4) Try to summarize the function in no more than 6 sentences.
+5) Your response should be a single line of text.
+
+INFO - [Task id] 903 [prompt] 
+def find_mirror_position(T, test_cases):
+    # Iterate through each test case
+    for x1, y1, x2, y2 in test_cases:
+        # Calculate the x-coordinate of the mirror using the formula derived from similar triangles
+        mirror_x = (x1 * y2 + x2 * y1) / (y1 + y2)
+        # Print the result with the required precision
+        print(f"{mirror_x:.2f}")
+
+# Read the number of test cases
+T = int(input())
+test_cases = []
+
+# Read each test case
+for _ in range(T):
+    x1, y1 = map(int, input().split())
+    x2, y2 = map(int, input().split())
+    test_cases.append((x1, y1, x2, y2))
+
+# Call the function to find and print the mirror positions
+find_mirror_position(T, test_cases)
+
+
+The main function is `find_mirror_position`.
+INFO - [Task id] 903 [generation text] This function processes multiple test cases to calculate the x-coordinate of a mirror position based on given coordinates. For each test case, it uses a formula derived from similar triangles to compute the mirror's x-coordinate. The results are formatted to two decimal places for clarity. The function iterates through the provided test cases and prints each calculated mirror position. It effectively handles the input and output in a structured manner. Overall, it provides a straightforward solution to determine mirror positions based on specified coordinates.
+INFO - LM call n parse attempt 1 / 3
+
+INFO - [Task id] 903 [prompt] 
+You are a helpful assistant that extracts important information from problems and solutions to aid in searchability and education.
+
+## Instructions
+- Read through the problem and solution carefully.
+- Reason out, step by step, in what scenarios this knowledge would be useful.
+- Focus on general patterns and situations to help connect this knowledge to new situations.
+- Then, include a list of keywords that are useful for searching this problem/solution pair.
+
+## Response format
+Respond in JSON, and follow the keys and expected format of the values strictly.
+
+The output should be formatted as a JSON instance that conforms to the JSON schema below.
+
+As an example, for the schema {"properties": {"foo": {"title": "Foo", "description": "a list of strings", "type": "array", "items": {"type": "string"}}}, "required": ["foo"]}
+the object {"foo": ["bar", "baz"]} is a well-formatted instance of the schema. The object {"properties": {"foo": ["bar", "baz"]}} is not well-formatted.
+
+Here is the output schema:
+```
+{"properties": {"scenarios": {"description": "In what scenarios will this knowledge be useful? Answer in a paragraph.", "title": "Scenarios", "type": "string"}, "keywords": {"description": "List of keywords that are useful for searching this problem/solution pair", "items": {"type": "string"}, "title": "Keywords", "type": "array"}}, "required": ["scenarios", "keywords"]}
+```
+
+INFO - [Task id] 903 [prompt] 
+[Problem]
+    Kabir likes Tara's smile and wants to look at her smile. They are sitting in the class and you are friends with Kabir. You have to place a mirror (point size)  in the front wall of the class so that Kabir can have a glimpse of Tara's smile.
+    Consider the front wall as x-axis . You are given the  coordinates of position of Kabir (x1,y1)$(x1,y1)$ and Tara  (x2,y2)$(x2,y2)$. Find the position where the mirror should be placed. 
+
+    -----Input:-----
+    - First line will contain T$T$, number of testcases. Then the testcases follow. 
+    - First line of each testcase contains two integers x1,y1$x1, y1$.
+    - Second line of each testcase contains two integers x2,y2$x2, y2$. 
+
+    -----Output:-----
+    For each testcase, print the x-coordinate of the mirror. Absolute error of 10−2$10^{−2}$ is allowed.
+
+    -----Constraints:-----
+    - 1≤T≤1000$1 \leq T \leq 1000$
+    - 1≤x1,y1,x2,y2≤105$1 \leq x1,y1,x2,y2 \leq 10^5 $
+
+    -----Sample Input:-----
+    1
+    1 1
+
+    4 4
+
+    -----Sample Output:-----
+    1.60
+[/Problem]
+
+[Solution]
+
+    def find_mirror_position(T, test_cases):
+        # Iterate through each test case
+        for x1, y1, x2, y2 in test_cases:
+            # Calculate the x-coordinate of the mirror using the formula derived from similar triangles
+            mirror_x = (x1 * y2 + x2 * y1) / (y1 + y2)
+            # Print the result with the required precision
+            print(f"{mirror_x:.2f}")
+
+    # Read the number of test cases
+    T = int(input())
+    test_cases = []
+
+    # Read each test case
+    for _ in range(T):
+        x1, y1 = map(int, input().split())
+        x2, y2 = map(int, input().split())
+        test_cases.append((x1, y1, x2, y2))
+
+    # Call the function to find and print the mirror positions
+    find_mirror_position(T, test_cases)
+
+[/Solution]
+
+INFO - [Task id] 903 [generation text] 
+INFO - {
+    "scenarios": "This knowledge is useful in scenarios involving geometry and optics, particularly when determining the position of a reflective surface to view an object indirectly. It can be applied in architectural design, photography, and any situation where line-of-sight calculations are necessary, such as in classrooms, theaters, or even in virtual environments where reflections are simulated. Understanding how to calculate the position of a mirror based on the coordinates of two points can help in optimizing visibility and aesthetics in various fields.",
+    "keywords": [
+        "mirror position",
+        "geometry",
+        "optics",
+        "reflection",
+        "coordinates",
+        "line of sight",
+        "similar triangles",
+        "classroom problem",
+        "Kabir and Tara",
+        "mathematics"
+    ]
+}
+INFO - {
+    "scenarios": "This knowledge is useful in scenarios involving geometry and optics, particularly when determining the position of a reflective surface to view an object indirectly. It can be applied in architectural design, photography, and any situation where line-of-sight calculations are necessary, such as in classrooms, theaters, or even in virtual environments where reflections are simulated. Understanding how to calculate the position of a mirror based on the coordinates of two points can help in optimizing visibility and aesthetics in various fields.",
+    "keywords": [
+        "mirror position",
+        "geometry",
+        "optics",
+        "reflection",
+        "coordinates",
+        "line of sight",
+        "similar triangles",
+        "classroom problem",
+        "Kabir and Tara",
+        "mathematics"
+    ]
+}
+INFO - Updated entry: 
+[description for function: find_mirror_position]
+This function processes multiple test cases to calculate the x-coordinate of a mirror position based on given coordinates. For each test case, it uses a formula derived from similar triangles to compute the mirror's x-coordinate. The results are f...,
+
+INFO - Metadata: {
+    "task": 903,
+    "code": "\ndef find_mirror_position(T, test_cases):\n    # Iterate through each test case\n    for x1, y1, x2, y2 in test_cases:\n        # Calculate the x-coordinate of the mirror using the formula derived from similar triangles\n        mirror_x = (x1 * y2 + x2 * y1) / (y...
+

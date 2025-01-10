@@ -77,6 +77,7 @@ if you want to use the one loaded from scratch, change the `--clone_ckpt` argume
 
 ### CoALA train
 
+#### Hyperparameter tuning
 First run training to get the checkpoint with various memories.
 We run with different retrieval k to tune it via train accuracies.
 
@@ -101,15 +102,21 @@ to the problems to verify that the solutions are correct.
 We have provided the precomputed result in data_tools/cache (will be loaded by default),
 but if that is deleted, the process will take a while.
 
-Then proceed to use the memories for evaluation:
-(minor caveat: manually delete the episodic/episode_state.json file before running the script to start fresh else it will count episodes from training)
+Now, we also ablate episodic memory to see if it is necessary for the performance of CoALA.
+```bash
+bash scripts/coala_train_apps_k_3_disable_episodic_4o_mini.sh
+bash scripts/coala_train_apps_k_1_disable_episodic_4o_0806.sh
+```
 
 ### CoALA test
+Now we proceed to use the memories for evaluation:
+(minor caveat: manually delete the episodic/episode_state.json file before running the script to start fresh else it will count episodes from training)
+
 We use the k corresponding to the best performance on APPS for each model.
 
 GPT-4o-mini:
 ```bash
-bash scripts/coala_test_k_3_4o_mini.sh
+bash scripts/coala_test_k_3_disable_episodic_4o_mini.sh
 ```
 
 GPT-4o-08-06:

@@ -1,0 +1,1354 @@
+INFO - DB skill doc count: 0
+
+INFO - DB non_func doc count: 71
+
+INFO - DB semantic doc count: 429
+
+INFO - DB summaries doc count: 90
+
+INFO - DB reflections doc count: 90
+
+INFO - DB episodic doc count: 166
+
+INFO - [train iter]: 90/100 
+
+INFO - The task prompt is One day, Chef found a cube which has each of its sides painted in some color out of black, blue, red, green, yellow and orange.
+Now he asks you to check if he can choose three sides such that they are pairwise adjacent and painted in the same color.
+
+-----Input-----
+- The first line of the input ...
+
+INFO - Attempting task_id 1227
+INFO - LM call n parse attempt 1 / 3
+
+INFO - [Task id] 1227 [prompt] 
+You are an expert programmer tasked with solving the problem below.
+
+Follow the user's instructions to solve the problem.
+The user can ask for analysis, code, or both.
+
+## Instructions
+When asked to output code,
+- Make sure to wrap your code in '```python' and '```' Markdown delimiters, 
+- include exactly one block of code with the entire solution
+- No outside libraries are allowed. 
+- Builtins are allowed.
+- If the task specifies a function name to be used, follow it strictly (be case sensitive!) and declare the that function last (helper functions are declared first).
+- DO NOT write any assert statements / tests.
+
+## Problem
+[BEGIN PROBLEM]
+One day, Chef found a cube which has each of its sides painted in some color out of black, blue, red, green, yellow and orange.
+Now he asks you to check if he can choose three sides such that they are pairwise adjacent and painted in the same color.
+
+-----Input-----
+- The first line of the input contains an integer T denoting the number of test cases.
+- A single line of each test case contains six words denoting the colors of painted sides in the order: front, back, left, right, top and bottom, respectively.
+
+-----Output-----
+For each test case, output a single line containing the word "YES" or "NO" (without quotes) corresponding to the answer of the problem.
+
+-----Constraints-----
+- 1 ≤ T ≤  50000 
+- Each color will be from the list {"black", "blue", "red", "green", "yellow", "orange"}
+
+-----Subtasks-----
+Subtask 1: (25 points)
+- 1 ≤ T ≤  12000 
+- For each test case there will be at most three different colors
+
+Subtask 2: (75 points)
+- Original constraints
+
+-----Example-----
+Input:
+2
+blue yellow green orange black green
+green yellow green orange black green
+
+Output:
+NO
+YES
+
+-----Explanation-----
+
+Example case 1.
+There are no three sides with the same color.
+
+Example case 2.
+In this test case, the front, bottom and left sides are green (see picture).
+
+The output code needs to read from and write to standard IO
+
+
+[END PROBLEM]
+
+INFO - [Task id] 1227 [prompt] 
+## Instructions
+
+Reason through the problem and:
+1. Restate the problem in plain English
+2. Conceptualize a solution first in plain English
+3. Write a pseudocode solution
+4. Output the final Python 3 solution with your solution steps in comments.
+
+Make sure to wrap your code in '```python' and '```' Markdown delimiters, 
+and include exactly one block of code with the entire solution.
+
+No outside libraries are allowed.
+Builtins are allowed.
+
+INFO - [Task id] 1227 [generation text] 1. **Restate the problem in plain English:**
+   The problem requires us to determine if there are three adjacent sides of a cube that are painted the same color. Each test case provides the colors of the six sides of the cube, and we need to check for each test case if such a triplet of adjacent sides exists.
+
+2. **Conceptualize a solution first in plain English:**
+   To solve this problem, we need to identify the sets of three sides that are adjacent to each other on a cube. The pairs of adjacent sides can be grouped as follows:
+   - Front, Left, Top
+   - Front, Right, Top
+   - Back, Left, Top
+   - Back, Right, Top
+   - Front, Left, Bottom
+   - Front, Right, Bottom
+   - Back, Left, Bottom
+   - Back, Right, Bottom
+
+   For each test case, we will check if any of these groups of three sides have the same color. If we find at least one such group, we will output "YES"; otherwise, we will output "NO".
+
+3. **Write a pseudocode solution:**
+   ```
+   function check_adjacent_colors(test_cases):
+       for each test_case in test_cases:
+           read colors for front, back, left, right, top, bottom
+           check the following combinations:
+               if (front == left == top) or
+                  (front == right == top) or
+                  (back == left == top) or
+                  (back == right == top) or
+                  (front == left == bottom) or
+                  (front == right == bottom) or
+                  (back == left == bottom) or
+                  (back == right == bottom):
+                   output "YES"
+               else:
+                   output "NO"
+   ```
+
+4. **Output the final Python 3 solution with your solution steps in comments:**
+```python
+def check_adjacent_colors(test_cases):
+    results = []
+    for colors in test_cases:
+        front, back, left, right, top, bottom = colors
+        
+        # Check the combinations of adjacent sides
+        if (front == left == top or
+            front == right == top or
+            back == left == top or
+            back == right == top or
+            front == left == bottom or
+            front == right == bottom or
+            back == left == bottom or
+            back == right == bottom):
+            results.append("YES")
+        else:
+            results.append("NO")
+    
+    # Print all results for each test case
+    for result in results:
+        print(result)
+
+# Read input
+T = int(input())
+test_cases = [input().split() for _ in range(T)]
+check_adjacent_colors(test_cases)
+```
+INFO - [35m Rollout attempt 1/4[0m
+INFO - [33m Retrieving 3 entries for db: episodic 
+ [0m
+INFO - Retrieved (score=0.3689):
+
+[Task]:
+    You are given $n$ intervals on the $X$ axis. Each interval $i$ is specified by its ends $[L_i, R_i]$. You want to color each interval either blue or yellow. After coloring all the intervals, the $X$ axis will will have $4$ colors:
+    - White, the part of $X$ axis contained in no int...
+
+
+INFO - Retrieved (score=0.3873):
+
+[Task]:
+    ```if:java
+    ___Note for Java users:___ Due to type checking in Java, inputs and outputs are formated quite differently in this language. See the footnotes of the description.
+
+
+    ```
+
+    You have the following lattice points with their corresponding coordinates and each one wit...
+
+
+INFO - Retrieved (score=0.4014):
+
+[Task]:
+    You are given $n$ intervals on the $X$ axis. Each interval $i$ is specified by its ends $[L_i, R_i]$. You want to color each interval either blue or yellow. After coloring all the intervals, the $X$ axis will will have $4$ colors:
+    - White, the part of $X$ axis contained in no int...
+
+
+INFO - [33m Retrieving 3 entries for db: semantic 
+ [0m
+INFO - Retrieved (score=0.4341):
+Title: Check whether a graph is bipartite
+Part: 1/1
+# Check whether a graph is bipartite
+
+A bipartite graph is a graph whose vertices can be divided into two disjoint sets so that every edge connects two vertices from different sets (i.e. there are no edges which connect vertices from the same se...
+
+
+INFO - Retrieved (score=0.4791):
+Title: 15 Puzzle Game: Existence Of The Solution
+Part: 1/1
+# 15 Puzzle Game: Existence Of The Solution
+
+This game is played on a $4 \times 4$ board. On this board there are $15$ playing tiles numbered from 1 to 15. One cell is left empty (denoted by 0). You need to get the board to the position p...
+
+
+INFO - Retrieved (score=0.4900):
+Title: Paint the edges of the tree
+Part: 1/1
+# Paint the edges of the tree
+
+This is a fairly common task. Given a tree $G$ with $N$ vertices. There are two types of queries: the first one is to paint an edge, the second one is to query the number of colored edges between two vertices.
+
+Here we wi...
+
+
+INFO - [33m Retrieving 3 entries for db: reflections 
+ [0m
+INFO - Retrieved (score=0.3810):
+In reflecting on my attempts to solve the problem of counting triangles formed by colored points, I learned several key insights from both my approach and the official solution.
+
+### Key Insights from the Official Solution:
+1. **Data Structure for Grouping**: The official solution uses a dictiona...
+
+
+INFO - Retrieved (score=0.4078):
+The official solution effectively checks for adjacent beds in a grid by iterating through the rows and columns separately. Here are the key insights and steps from the official solution:
+
+1. **Input Handling**: The solution begins by reading the number of test cases and initializing a list to sto...
+
+
+INFO - Retrieved (score=0.4224):
+The official solution employs a systematic approach to distribute the ducks into boxes while adhering to the constraints of color mixing and box capacity. Here are the key insights and steps from the official solution:
+
+1. **Input Handling**: The solution begins by reading the number of test case...
+
+
+INFO - [33m Retrieving 3 entries for db: summaries 
+ [0m
+INFO - Retrieved (score=0.3563):
+In this task, the goal was to count the number of triangles that can be formed using points of the same color from a given list of colored points in a 2D plane. The output needed to include the total number of points, unique colors, total triangles, and the color(s) with the maximum number of tri...
+
+
+INFO - Retrieved (score=0.3747):
+In this problem, the key concept revolves around understanding how two different methods of distributing apples into boxes can lead to different outcomes. The first candidate distributes apples evenly, while the second candidate can create uneven distributions by filling the box with the least ap...
+
+
+INFO - Retrieved (score=0.3829):
+The problem involved determining if a set of matchsticks could be arranged to form a perfect square. The key concepts tested were the ability to check divisibility for equal partitioning and the use of backtracking to explore combinations of matchstick placements.
+
+The solution required calculati...
+
+
+INFO - [33m Retrieving 3 entries for db: non_func 
+ [0m
+INFO - Retrieved (score=0.4589):
+
+[description for function: main]
+This function reads input values for multiple test cases, including the number of walls and a series of queries. For each test case, it collects the wall positions and the queries, which consist of pairs of coordinates. It then processes these queries by invoking...
+
+
+INFO - Retrieved (score=0.4661):
+
+[description]
+The function checks if a given hand of cards can be rearranged into groups of consecutive cards, each of size W. It first verifies that the total number of cards is divisible by W; if not, it returns False. The hand is then sorted, and a frequency dictionary is created to count the...
+
+
+INFO - Retrieved (score=0.4791):
+
+[description]
+The function determines whether a given list of matchsticks can be arranged to form a square. It first calculates the total length of the matchsticks and checks if this length is divisible by four, as each side of the square must be equal. If the total length is not divisible by fo...
+
+
+INFO - Retrieved (score=0.3563): 
+[Summary]:
+    In this task, the goal was to count the number of triangles that can be formed using points of the same color from a given list of colored points in a 2D plane. The output needed to include the total number of points, unique colors, total triangles, and the color(s) with the maxim...
+INFO - Retrieved (score=0.3689): 
+[Past Memory]:
+
+    [Task]:
+        You are given $n$ intervals on the $X$ axis. Each interval $i$ is specified by its ends $[L_i, R_i]$. You want to color each interval either blue or yellow. After coloring all the intervals, the $X$ axis will will have $4$ colors:
+        - White, the part of ...
+INFO - Retrieved (score=0.3747): 
+[Summary]:
+    In this problem, the key concept revolves around understanding how two different methods of distributing apples into boxes can lead to different outcomes. The first candidate distributes apples evenly, while the second candidate can create uneven distributions by filling the box w...
+INFO - LM call n parse attempt 1 / 3
+
+INFO - [Task id] 1227 [prompt] 
+You are an expert programmer tasked with solving the problem below.
+
+Follow the user's instructions to solve the problem.
+The user can ask for analysis, code, or both.
+
+## Instructions
+When asked to output code,
+- Make sure to wrap your code in '```python' and '```' Markdown delimiters, 
+- include exactly one block of code with the entire solution
+- No outside libraries are allowed. 
+- Builtins are allowed.
+- If the task specifies a function name to be used, follow it strictly (be case sensitive!) and declare the that function last (helper functions are declared first).
+- DO NOT write any assert statements / tests.
+
+## Problem
+[BEGIN PROBLEM]
+One day, Chef found a cube which has each of its sides painted in some color out of black, blue, red, green, yellow and orange.
+Now he asks you to check if he can choose three sides such that they are pairwise adjacent and painted in the same color.
+
+-----Input-----
+- The first line of the input contains an integer T denoting the number of test cases.
+- A single line of each test case contains six words denoting the colors of painted sides in the order: front, back, left, right, top and bottom, respectively.
+
+-----Output-----
+For each test case, output a single line containing the word "YES" or "NO" (without quotes) corresponding to the answer of the problem.
+
+-----Constraints-----
+- 1 ≤ T ≤  50000 
+- Each color will be from the list {"black", "blue", "red", "green", "yellow", "orange"}
+
+-----Subtasks-----
+Subtask 1: (25 points)
+- 1 ≤ T ≤  12000 
+- For each test case there will be at most three different colors
+
+Subtask 2: (75 points)
+- Original constraints
+
+-----Example-----
+Input:
+2
+blue yellow green orange black green
+green yellow green orange black green
+
+Output:
+NO
+YES
+
+-----Explanation-----
+
+Example case 1.
+There are no three sides with the same color.
+
+Example case 2.
+In this test case, the front, bottom and left sides are green (see picture).
+
+The output code needs to read from and write to standard IO
+
+
+[END PROBLEM]
+
+INFO - [Task id] 1227 [prompt] 
+## Instructions
+
+Reason through the problem and:
+1. Restate the problem in plain English
+2. Conceptualize a solution first in plain English
+3. Write a pseudocode solution
+4. Output the final Python 3 solution with your solution steps in comments.
+
+Make sure to wrap your code in '```python' and '```' Markdown delimiters, 
+and include exactly one block of code with the entire solution.
+
+No outside libraries are allowed.
+Builtins are allowed.
+
+INFO - [Task id] 1227 [prompt] 
+Also, here are some of your memories.
+Feel free to use the given information to aid your problem solving process if necessary.
+Do not confuse the memories with the problem statement.
+
+## Memories
+
+[Summary]:
+    In this task, the goal was to count the number of triangles that can be formed using points of the same color from a given list of colored points in a 2D plane. The output needed to include the total number of points, unique colors, total triangles, and the color(s) with the maximum number of triangles along with their counts.
+
+    Key concepts involved:
+    - Grouping points by color using a dictionary.
+    - Using combinations to generate sets of three points and checking for collinearity using the determinant method.
+    - Collecting statistics and formatting the output correctly.
+
+    The main issues encountered were related to the output format. Initially, I returned the color(s) with the maximum triangles and their count in a nested list, which did not match the expected output structure. The correct format required a flat list containing the colors followed by the count, rather than wrapping them in an additional list.
+
+    The final implementation corrected this by ensuring the output was structured as `[total_points, total_colors, total_triangles, max_colors, max_triangles]`, where `max_colors` is a list of colors and `max_triangles` is the count of triangles for those colors.
+
+    Here’s the final code snippet for reference:
+
+    ```python
+    def count_col_triang(points):
+        from collections import defaultdict
+        from itertools import combinations
+
+        # Group points by color
+        color_points = defaultdict(list)
+        for point in points:
+            color_points[point[1]].append(point[0])
+
+        # Initialize statistics
+        total_points = len(points)
+        total_colors = len(color_points)
+        total_triangles = 0
+        triangles_by_color = {}
+
+        # Calculate triangles for each color
+        for color, pts in color_points.items():
+            num_points = len(pts)
+            if num_points >= 3:
+                triangles_count = 0
+                for p1, p2, p3 in combinations(pts, 3):
+                    if (p1[0] * (p2[1] - p3[1]) + p2[0] * (p3[1] - p1[1]) + p3[0] * (p1[1] - p2[1])) != 0:
+                        triangles_count += 1
+                total_triangles += triangles_count
+                triangles_by_color[color] = triangles_count
+
+        # Determine the color(s) with the maximum number of triangles
+        max_triangles = max(triangles_by_color.values(), default=0)
+        max_colors = sorted([color for color, count in triangles_by_color.items() if count == max_triangles])
+
+        # Return the results
+        return [total_points, total_colors, total_triangles, max_colors, max_triangles]
+    ```
+
+    This experience highlighted the importance of carefully adhering to output specifications and the need for thorough testing to ensure all edge cases are handled correctly.
+[/Summary]
+
+
+[Past Memory]:
+
+    [Task]:
+        You are given $n$ intervals on the $X$ axis. Each interval $i$ is specified by its ends $[L_i, R_i]$. You want to color each interval either blue or yellow. After coloring all the intervals, the $X$ axis will will have $4$ colors:
+        - White, the part of $X$ axis contained in no interval
+        - Blue, the part of $X$ axis contained in atleast one blue colored interval and no yellow colored interval.
+        - Yellow, the part of $X$ axis contained in atleast one yellow colored interval and no blue colored interval.
+        - Green, the part of $X$ axis contained in at least one blue colored interval and at least one yellow colored interval.
+        You want to color the intervals so that the total length of the part colored green is maximized. If there are multiple ways to color which maximize the green part, you can output any of them.
+
+        -----Input:-----
+        - First line will contain $T$, number of testcases. Then the testcases follow. 
+        - The first line of each testcase contains $n$, the number of intervals.
+        - The $i^{\text{th}}$ of the next $n$ lines contains two integers $L_i$ and $R_i$ describing the $i^{\text{th}}$ interval.
+
+        -----Output:-----
+        For each testcase, output a single string on a new line, whose $i^{\text{th}}$ character is $0$ if you color the $i^{\text{th}}$ interval blue, and $1$ if you color it yellow.
+
+        -----Constraints-----
+        - $ 1 \leq T \leq 10^5 $
+        - $ 1 \leq n \leq 10^5 $
+        - The sum of $n$ over all testcases doesn't exceed $10^5$.
+        - $ 1 \leq L_i \leq R_i \leq 10^9 $ for al $ 1 \leq i \leq n$.
+
+        -----Sample Input:-----
+        1
+        3
+        3 7
+        2 5
+        6 9
+
+        -----Sample Output:-----
+        100
+
+        -----Explanation:-----
+        The intervals are $[3, 7]$, $[2, 5]$, $[6, 9]$. It is optimal to color them in yellow, blue and blue respectively. In this coloring:
+        - $[2, 3) \cup (7, 9]$ is colored blue.
+        - $(5, 6)$ is colored yellow.
+        - $[3, 5] \cup [6, 7]$ is colored green, with a total length of $(5 - 3) + (7 - 6) = 3$.
+        - Rest of the $X$ axis is colored white.
+        Please note that colors at the endpoints of the intervals don't matter when computing the lengths, and we can ignore them. Open and closed intervals have been used in the explanation section only for clarity, and it doesn't matter whether they are open or closed.
+        Note that 011 is also a valid output.
+    [/Task]
+
+    [Previous Critique]:
+        None
+    [/Previous Critique]
+
+    [Thought Process and Code]:
+        1. **Restate the problem in plain English**:
+           The task is to color a set of intervals on the X-axis either blue or yellow in such a way that the total length of the area that is colored green (where both blue and yellow intervals overlap) is maximized. Each interval can only be colored one way, and we need to determine the optimal coloring for multiple test cases.
+
+        2. **Conceptualize a solution first in plain English**:
+           To maximize the green area, we should look for overlaps between intervals. If two intervals overlap, we can color one blue and the other yellow to create a green area. The strategy involves sorting the intervals and then iterating through them to determine overlaps. We can keep track of the last colored interval and decide the color of the current interval based on whether it overlaps with the last one.
+
+        3. **Write a pseudocode solution**:
+           ```
+           function maximize_green_intervals(test_cases):
+               for each test_case in test_cases:
+                   read number of intervals n
+                   read intervals into a list
+                   sort intervals by their starting point
+                   initialize a result string
+                   last_color = None
+                   for each interval in intervals:
+                       if last_color is None:
+                           color the interval blue
+                           last_color = blue
+                       else if interval overlaps with last colored interval:
+                           color the interval yellow
+                           last_color = yellow
+                       else:
+                           color the interval blue
+                           last_color = blue
+                   append the result string for this test_case
+               return all result strings
+           ```
+
+        4. **Output the final Python 3 solution with your solution steps in comments**:
+        ```python
+        def maximize_green_intervals(T):
+            results = []
+            for _ in range(T):
+                n = int(input())
+                intervals = []
+                for __ in range(n):
+                    L, R = map(int, input().split())
+                    intervals.append((L, R))
+        
+                # Sort intervals by their starting point
+                intervals.sort()
+        
+                result = []
+                last_color = None
+        
+                for i in range(n):
+                    if last_color is None:
+                        # Color the first interval blue
+                        result.append('0')
+                        last_color = '0'
+                    else:
+                        # Check for overlap with the last colored interval
+                        if intervals[i][0] < intervals[i-1][1]:
+                            # Overlap detected, color this interval yellow
+                            result.append('1')
+                            last_color = '1'
+                        else:
+                            # No overlap, color this interval blue
+                            result.append('0')
+                            last_color = '0'
+        
+                # Join the result for this test case and add to results
+                results.append(''.join(result))
+    
+            # Print all results for each test case
+            print('\n'.join(results))
+
+        T = int(input())
+        maximize_green_intervals(T)
+        ```
+    [/Thought Process and Code]
+
+    [Environment Feedback]:
+        Note: Inputs/outputs here are automatically extracted/truncated so formatting may be a bit off.
+        Tests passed:
+
+        None
+
+        Tests failed:
+         Input: ['1', '3', '3 7', '2 5', '6 9'] Expected output: [{'100'}] # Execution output: ['011']
+    [/Environment Feedback]
+
+    [Result]:
+        Failure
+    [/Result]
+
+[/Past Memory]
+
+
+[Summary]:
+    In this problem, the key concept revolves around understanding how two different methods of distributing apples into boxes can lead to different outcomes. The first candidate distributes apples evenly, while the second candidate can create uneven distributions by filling the box with the least apples. The critical insight is that if K (the number of boxes) is 1, both candidates will yield the same result, while for K greater than 1, the distributions can differ.
+
+    The solution involves a straightforward conditional check on the value of K. If K equals 1, the output is "NO"; otherwise, it is "YES". This logic is efficient and works within the constraints provided, as it only requires a simple comparison for each test case.
+
+    The final implementation reads the number of test cases and processes each case by checking the value of K, printing the appropriate response. The code is clean and efficient, handling the maximum constraints without any issues. 
+
+    Here’s the final code snippet for reference:
+
+    ```python
+    def can_distribute_apples(T):
+        for _ in range(T):
+            N, K = map(int, input().split())
+            if K == 1:
+                print("NO")
+            else:
+                print("YES")
+
+    T = int(input())
+    can_distribute_apples(T)
+    ```
+
+    This experience reinforced the importance of understanding the implications of the problem constraints and how they affect the solution approach.
+[/Summary]
+
+
+INFO - [Task id] 1227 [generation text] 1. **Restate the problem in plain English**:
+   The task is to determine if there are three adjacent sides of a cube that are painted the same color. Each cube has six sides, and the colors of these sides are provided as input. We need to check for each test case if there exists a combination of three sides that are adjacent and share the same color.
+
+2. **Conceptualize a solution first in plain English**:
+   A cube has specific sets of three sides that are adjacent to each other. We can represent the sides of the cube as follows:
+   - Front (F)
+   - Back (B)
+   - Left (L)
+   - Right (R)
+   - Top (T)
+   - Bottom (D)
+
+   The adjacent triplets of sides are:
+   - (F, L, T)
+   - (F, R, T)
+   - (F, L, D)
+   - (F, R, D)
+   - (B, L, T)
+   - (B, R, T)
+   - (B, L, D)
+   - (B, R, D)
+
+   For each test case, we will check these combinations to see if any of them are painted the same color. If we find at least one such combination, we will output "YES"; otherwise, we will output "NO".
+
+3. **Write a pseudocode solution**:
+   ```
+   function check_adjacent_colors(test_cases):
+       for each test_case in test_cases:
+           read colors of the six sides
+           check each of the eight combinations of adjacent sides
+           if any combination has the same color:
+               output "YES"
+           else:
+               output "NO"
+   ```
+
+4. **Output the final Python 3 solution with your solution steps in comments**:
+```python
+def can_choose_three_adjacent_sides(T):
+    for _ in range(T):
+        # Read the colors of the six sides
+        colors = input().split()
+        
+        # Check the eight combinations of adjacent sides
+        if (colors[0] == colors[2] == colors[4] or  # F, L, T
+            colors[0] == colors[3] == colors[4] or  # F, R, T
+            colors[0] == colors[2] == colors[5] or  # F, L, D
+            colors[0] == colors[3] == colors[5] or  # F, R, D
+            colors[1] == colors[2] == colors[4] or  # B, L, T
+            colors[1] == colors[3] == colors[4] or  # B, R, T
+            colors[1] == colors[2] == colors[5] or  # B, L, D
+            colors[1] == colors[3] == colors[5]):    # B, R, D
+            print("YES")
+        else:
+            print("NO")
+
+T = int(input())
+can_choose_three_adjacent_sides(T)
+```
+INFO - program_code:
+ 
+def can_choose_three_adjacent_sides(T):
+    for _ in range(T):
+        # Read the colors of the six sides
+        colors = input().split()
+        
+        # Check the eight combinations of adjacent sides
+        if (colors[0] == colors[2] == colors[4] or  # F, L, T
+            colors[0] == colors[3] == colors[4] or  # F, R, T
+            colors[0] == colors[2] == colors[5] or  # F, L, D
+            colors[0] == colors[3] == colors[5] or  # F, R, D
+            colors[1] == colors[2] == colors[4] or  # B, L, T
+            colors[1] == colors[3] == colors[4] or  # B, R, T
+            colors[1] == colors[2] == colors[5] or  # B, L, D
+            colors[1] == colors[3] == colors[5]):    # B, R, D
+            print("YES")
+        else:
+            print("NO")
+
+T = int(input())
+can_choose_three_adjacent_sides(T)
+
+
+INFO - program_name:
+ can_choose_three_adjacent_sides
+
+INFO - dependencies:
+ []
+
+INFO - raw_msg:
+ 1. **Restate the problem in plain English**:
+   The task is to determine if there are three adjacent sides of a cube that are painted the same color. Each cube has six sides, and the colors of these sides are provided as input. We need to check for each test case if there exists a combination of three sides that are adjacent and share the same color.
+
+2. **Conceptualize a solution first in plain English**:
+   A cube has specific sets of three sides that are adjacent to each other. We can represent the sides of the cube as follows:
+   - Front (F)
+   - Back (B)
+   - Left (L)
+   - Right (R)
+   - Top (T)
+   - Bottom (D)
+
+   The adjacent triplets of sides are:
+   - (F, L, T)
+   - (F, R, T)
+   - (F, L, D)
+   - (F, R, D)
+   - (B, L, T)
+   - (B, R, T)
+   - (B, L, D)
+   - (B, R, D)
+
+   For each test case, we will check these combinations to see if any of them are painted the same color. If we find at least one such combination, we will output "YES"; otherwise, we will output "NO".
+
+3. **Write a pseudocode solution**:
+   ```
+   function check_adjacent_colors(test_cases):
+       for each test_case in test_cases:
+           read colors of the six sides
+           check each of the eight combinations of adjacent sides
+           if any combination has the same color:
+               output "YES"
+           else:
+               output "NO"
+   ```
+
+4. **Output the final Python 3 solution with your solution steps in comments**:
+```python
+def can_choose_three_adjacent_sides(T):
+    for _ in range(T):
+        # Read the colors of the six sides
+        colors = input().split()
+        
+        # Check the eight combinations of adjacent sides
+        if (colors[0] == colors[2] == colors[4] or  # F, L, T
+            colors[0] == colors[3] == colors[4] or  # F, R, T
+            colors[0] == colors[2] == colors[5] or  # F, L, D
+            colors[0] == colors[3] == colors[5] or  # F, R, D
+            colors[1] == colors[2] == colors[4] or  # B, L, T
+            colors[1] == colors[3] == colors[4] or  # B, R, T
+            colors[1] == colors[2] == colors[5] or  # B, L, D
+            colors[1] == colors[3] == colors[5]):    # B, R, D
+            print("YES")
+        else:
+            print("NO")
+
+T = int(input())
+can_choose_three_adjacent_sides(T)
+```
+
+INFO - no_parent:
+ False
+
+INFO - full code to be executed: 
+ 
+def can_choose_three_adjacent_sides(T):
+    for _ in range(T):
+        # Read the colors of the six sides
+        colors = input().split()
+        
+        # Check the eight combinations of adjacent sides
+        if (colors[0] == colors[2] == colors[4] or  # F, L, T
+            colors[0] == colors[3] == colors[4] or  # F, R, T
+            colors[0] == colors[2] == colors[5] or  # F, L, D
+            colors[0] == colors[3] == colors[5] or  # F, R, D
+            colors[1] == colors[2] == colors[4] or  # B, L, T
+            colors[1] == colors[3] == colors[4] or  # B, R, T
+            colors[1] == colors[2] == colors[5] or  # B, L, D
+            colors[1] == colors[3] == colors[5]):    # B, R, D
+            print("YES")
+        else:
+            print("NO")
+
+T = int(input())
+can_choose_three_adjacent_sides(T)
+
+
+INFO - obs: Note: Inputs/outputs here are automatically extracted/truncated so formatting may be a bit off.
+Tests passed:
+
+ Input: ['2', 'blue yellow green orange black green', 'green yellow green orange black green'] Output: NO
+YES
+
+Tests failed:
+None
+reward: True
+done: None
+info: {'individual_results': [True]}
+INFO - Updated entry: 
+[Task]:
+    One day, Chef found a cube which has each of its sides painted in some color out of black, blue, red, green, yellow and orange.
+    Now he asks you to check if he can choose three sides such that they are pairwise adjacent and painted in the same color.
+
+    -----Input-----
+    - The...,
+
+INFO - Metadata: {
+    "raw_msg": "1. **Restate the problem in plain English**:\n   The task is to determine if there are three adjacent sides of a cube that are painted the same color. Each cube has six sides, and the colors of these sides are provided as input. We need to check for each test case if there exist...
+
+INFO - LM call n parse attempt 1 / 3
+
+INFO - [Task id] 1227 [prompt] 
+You are an expert programmer tasked with solving the problem below.
+
+Follow the user's instructions to solve the problem.
+The user can ask for analysis, code, or both.
+
+## Instructions
+When asked to output code,
+- Make sure to wrap your code in '```python' and '```' Markdown delimiters, 
+- include exactly one block of code with the entire solution
+- No outside libraries are allowed. 
+- Builtins are allowed.
+- If the task specifies a function name to be used, follow it strictly (be case sensitive!) and declare the that function last (helper functions are declared first).
+- DO NOT write any assert statements / tests.
+
+## Problem
+[BEGIN PROBLEM]
+One day, Chef found a cube which has each of its sides painted in some color out of black, blue, red, green, yellow and orange.
+Now he asks you to check if he can choose three sides such that they are pairwise adjacent and painted in the same color.
+
+-----Input-----
+- The first line of the input contains an integer T denoting the number of test cases.
+- A single line of each test case contains six words denoting the colors of painted sides in the order: front, back, left, right, top and bottom, respectively.
+
+-----Output-----
+For each test case, output a single line containing the word "YES" or "NO" (without quotes) corresponding to the answer of the problem.
+
+-----Constraints-----
+- 1 ≤ T ≤  50000 
+- Each color will be from the list {"black", "blue", "red", "green", "yellow", "orange"}
+
+-----Subtasks-----
+Subtask 1: (25 points)
+- 1 ≤ T ≤  12000 
+- For each test case there will be at most three different colors
+
+Subtask 2: (75 points)
+- Original constraints
+
+-----Example-----
+Input:
+2
+blue yellow green orange black green
+green yellow green orange black green
+
+Output:
+NO
+YES
+
+-----Explanation-----
+
+Example case 1.
+There are no three sides with the same color.
+
+Example case 2.
+In this test case, the front, bottom and left sides are green (see picture).
+
+The output code needs to read from and write to standard IO
+
+
+[END PROBLEM]
+
+INFO - [Task id] 1227 [prompt] 
+## Instructions
+
+Reason through the problem and:
+1. Restate the problem in plain English
+2. Conceptualize a solution first in plain English
+3. Write a pseudocode solution
+4. Output the final Python 3 solution with your solution steps in comments.
+
+Make sure to wrap your code in '```python' and '```' Markdown delimiters, 
+and include exactly one block of code with the entire solution.
+
+No outside libraries are allowed.
+Builtins are allowed.
+
+INFO - [Task id] 1227 [prompt] 1. **Restate the problem in plain English**:
+   The task is to determine if there are three adjacent sides of a cube that are painted the same color. Each cube has six sides, and the colors of these sides are provided as input. We need to check for each test case if there exists a combination of three sides that are adjacent and share the same color.
+
+2. **Conceptualize a solution first in plain English**:
+   A cube has specific sets of three sides that are adjacent to each other. We can represent the sides of the cube as follows:
+   - Front (F)
+   - Back (B)
+   - Left (L)
+   - Right (R)
+   - Top (T)
+   - Bottom (D)
+
+   The adjacent triplets of sides are:
+   - (F, L, T)
+   - (F, R, T)
+   - (F, L, D)
+   - (F, R, D)
+   - (B, L, T)
+   - (B, R, T)
+   - (B, L, D)
+   - (B, R, D)
+
+   For each test case, we will check these combinations to see if any of them are painted the same color. If we find at least one such combination, we will output "YES"; otherwise, we will output "NO".
+
+3. **Write a pseudocode solution**:
+   ```
+   function check_adjacent_colors(test_cases):
+       for each test_case in test_cases:
+           read colors of the six sides
+           check each of the eight combinations of adjacent sides
+           if any combination has the same color:
+               output "YES"
+           else:
+               output "NO"
+   ```
+
+4. **Output the final Python 3 solution with your solution steps in comments**:
+```python
+def can_choose_three_adjacent_sides(T):
+    for _ in range(T):
+        # Read the colors of the six sides
+        colors = input().split()
+        
+        # Check the eight combinations of adjacent sides
+        if (colors[0] == colors[2] == colors[4] or  # F, L, T
+            colors[0] == colors[3] == colors[4] or  # F, R, T
+            colors[0] == colors[2] == colors[5] or  # F, L, D
+            colors[0] == colors[3] == colors[5] or  # F, R, D
+            colors[1] == colors[2] == colors[4] or  # B, L, T
+            colors[1] == colors[3] == colors[4] or  # B, R, T
+            colors[1] == colors[2] == colors[5] or  # B, L, D
+            colors[1] == colors[3] == colors[5]):    # B, R, D
+            print("YES")
+        else:
+            print("NO")
+
+T = int(input())
+can_choose_three_adjacent_sides(T)
+```
+INFO - [Task id] 1227 [prompt] 
+[Environment Feedback]:
+    Note: Inputs/outputs here are automatically extracted/truncated so formatting may be a bit off.
+    Tests passed:
+
+     Input: ['2', 'blue yellow green orange black green', 'green yellow green orange black green'] Output: NO
+    YES
+
+    Tests failed:
+    None
+[/Environment Feedback]
+
+INFO - [Task id] 1227 [prompt] 
+## Instructions
+Now, summarize your attempts as a **standalone** document for your own future reference. (can skip formalities, be concise)
+
+- Only include the most relevant information and code snippets that could be useful in the future.
+- If you did not learn much from the current experience (e.g. the problem was too easy), feel free to write less or nothing at all.
+- Here are some ideas if the experience was useful:
+    - Identifying the core concepts and patterns that problem appears to test for
+    - Describing the strategies that seemed to work but did not, and vice versa
+    - Describing unexpected errors and how they were fixed
+
+Your summary should be at most a few paragraphs.
+
+INFO - [Task id] 1227 [generation text] In this task, the goal was to determine if there are three adjacent sides of a cube painted the same color based on given inputs. The cube has six sides, and the adjacency of sides was defined by specific combinations. The solution involved checking these combinations for each test case.
+
+The core concept was to identify the eight possible combinations of three adjacent sides and check if they all share the same color. The implementation was straightforward, using simple conditional checks to compare the colors of the sides.
+
+The final solution was efficient and passed all test cases, demonstrating that the approach of directly checking the combinations worked well. The code utilized basic input handling and conditional logic without any external libraries, adhering to the problem constraints. 
+
+Here’s the key code snippet for reference:
+
+```python
+def can_choose_three_adjacent_sides(T):
+    for _ in range(T):
+        colors = input().split()
+        if (colors[0] == colors[2] == colors[4] or  # F, L, T
+            colors[0] == colors[3] == colors[4] or  # F, R, T
+            colors[0] == colors[2] == colors[5] or  # F, L, D
+            colors[0] == colors[3] == colors[5] or  # F, R, D
+            colors[1] == colors[2] == colors[4] or  # B, L, T
+            colors[1] == colors[3] == colors[4] or  # B, R, T
+            colors[1] == colors[2] == colors[5] or  # B, L, D
+            colors[1] == colors[3] == colors[5]):    # B, R, D
+            print("YES")
+        else:
+            print("NO")
+```
+
+This experience reinforced the importance of understanding the problem's structure and efficiently checking conditions based on defined relationships.
+INFO - LM call n parse attempt 1 / 3
+
+INFO - [Task id] 1227 [prompt] 
+You are an expert programmer tasked with solving the problem below.
+
+Follow the user's instructions to solve the problem.
+The user can ask for analysis, code, or both.
+
+## Instructions
+When asked to output code,
+- Make sure to wrap your code in '```python' and '```' Markdown delimiters, 
+- include exactly one block of code with the entire solution
+- No outside libraries are allowed. 
+- Builtins are allowed.
+- If the task specifies a function name to be used, follow it strictly (be case sensitive!) and declare the that function last (helper functions are declared first).
+- DO NOT write any assert statements / tests.
+
+## Problem
+[BEGIN PROBLEM]
+One day, Chef found a cube which has each of its sides painted in some color out of black, blue, red, green, yellow and orange.
+Now he asks you to check if he can choose three sides such that they are pairwise adjacent and painted in the same color.
+
+-----Input-----
+- The first line of the input contains an integer T denoting the number of test cases.
+- A single line of each test case contains six words denoting the colors of painted sides in the order: front, back, left, right, top and bottom, respectively.
+
+-----Output-----
+For each test case, output a single line containing the word "YES" or "NO" (without quotes) corresponding to the answer of the problem.
+
+-----Constraints-----
+- 1 ≤ T ≤  50000 
+- Each color will be from the list {"black", "blue", "red", "green", "yellow", "orange"}
+
+-----Subtasks-----
+Subtask 1: (25 points)
+- 1 ≤ T ≤  12000 
+- For each test case there will be at most three different colors
+
+Subtask 2: (75 points)
+- Original constraints
+
+-----Example-----
+Input:
+2
+blue yellow green orange black green
+green yellow green orange black green
+
+Output:
+NO
+YES
+
+-----Explanation-----
+
+Example case 1.
+There are no three sides with the same color.
+
+Example case 2.
+In this test case, the front, bottom and left sides are green (see picture).
+
+The output code needs to read from and write to standard IO
+
+
+[END PROBLEM]
+
+INFO - [Task id] 1227 [prompt] 
+## Instructions
+
+Reason through the problem and:
+1. Restate the problem in plain English
+2. Conceptualize a solution first in plain English
+3. Write a pseudocode solution
+4. Output the final Python 3 solution with your solution steps in comments.
+
+Make sure to wrap your code in '```python' and '```' Markdown delimiters, 
+and include exactly one block of code with the entire solution.
+
+No outside libraries are allowed.
+Builtins are allowed.
+
+INFO - [Task id] 1227 [prompt] 1. **Restate the problem in plain English**:
+   The task is to determine if there are three adjacent sides of a cube that are painted the same color. Each cube has six sides, and the colors of these sides are provided as input. We need to check for each test case if there exists a combination of three sides that are adjacent and share the same color.
+
+2. **Conceptualize a solution first in plain English**:
+   A cube has specific sets of three sides that are adjacent to each other. We can represent the sides of the cube as follows:
+   - Front (F)
+   - Back (B)
+   - Left (L)
+   - Right (R)
+   - Top (T)
+   - Bottom (D)
+
+   The adjacent triplets of sides are:
+   - (F, L, T)
+   - (F, R, T)
+   - (F, L, D)
+   - (F, R, D)
+   - (B, L, T)
+   - (B, R, T)
+   - (B, L, D)
+   - (B, R, D)
+
+   For each test case, we will check these combinations to see if any of them are painted the same color. If we find at least one such combination, we will output "YES"; otherwise, we will output "NO".
+
+3. **Write a pseudocode solution**:
+   ```
+   function check_adjacent_colors(test_cases):
+       for each test_case in test_cases:
+           read colors of the six sides
+           check each of the eight combinations of adjacent sides
+           if any combination has the same color:
+               output "YES"
+           else:
+               output "NO"
+   ```
+
+4. **Output the final Python 3 solution with your solution steps in comments**:
+```python
+def can_choose_three_adjacent_sides(T):
+    for _ in range(T):
+        # Read the colors of the six sides
+        colors = input().split()
+        
+        # Check the eight combinations of adjacent sides
+        if (colors[0] == colors[2] == colors[4] or  # F, L, T
+            colors[0] == colors[3] == colors[4] or  # F, R, T
+            colors[0] == colors[2] == colors[5] or  # F, L, D
+            colors[0] == colors[3] == colors[5] or  # F, R, D
+            colors[1] == colors[2] == colors[4] or  # B, L, T
+            colors[1] == colors[3] == colors[4] or  # B, R, T
+            colors[1] == colors[2] == colors[5] or  # B, L, D
+            colors[1] == colors[3] == colors[5]):    # B, R, D
+            print("YES")
+        else:
+            print("NO")
+
+T = int(input())
+can_choose_three_adjacent_sides(T)
+```
+INFO - [Task id] 1227 [prompt] 
+[Environment Feedback]:
+    Note: Inputs/outputs here are automatically extracted/truncated so formatting may be a bit off.
+    Tests passed:
+
+     Input: ['2', 'blue yellow green orange black green', 'green yellow green orange black green'] Output: NO
+    YES
+
+    Tests failed:
+    None
+[/Environment Feedback]
+
+INFO - [Task id] 1227 [prompt] 
+Below is the official solution (do exercise discretion as official solutions can also have mistakes).
+
+You will be reflecting on your attempts to solve the problem.
+This will be a **standalone** document for your own future reference. (can skip formalities, be concise)
+
+## Instructions
+- Only include the most relevant insights and code snippets that could be useful in the future.
+- If you did not learn much from the current experience (e.g. the problem was too easy / official solution was obvious), feel free to write less or nothing at all.
+- Here are some ideas if the experience was useful:
+    - If the official solution is insightful (e.g. better than yours in time and space complexity or more effective in breaking down the problem statement), distil the key approach of the official solution, step by step.
+    - If your approach failed the test cases, reason why the official solution works but yours does not
+
+Your reflection should be at most a few paragraphs.
+
+## Official solution
+for _ in range(int(input())):
+ l=list(map(str,input().split()))
+ a=[(1,3,5),(1,3,6),(1,4,5),(1,4,6),(2,3,5),(2,3,6),(2,4,5),(2,4,6)]
+ c=0
+ for i in a:
+  if len(set([l[i[0]-1],l[i[1]-1],l[i[2]-1]]))==1:
+   c=1
+   break
+ if c==1:
+  print("YES")
+ else:
+  print("NO")
+
+
+INFO - [Task id] 1227 [generation text] The official solution effectively checks for three adjacent sides of a cube that are painted the same color by using a list of tuples to represent the indices of the sides. This approach is efficient and straightforward, leveraging Python's set data structure to determine if all three colors in a combination are the same.
+
+Key insights from the official solution:
+
+1. **Indexing**: The solution uses 1-based indexing for the sides of the cube, which is then adjusted to 0-based indexing when accessing the list of colors. This is a common practice in competitive programming to avoid off-by-one errors.
+
+2. **Tuple Combinations**: The use of a predefined list of tuples (`a`) that represent the combinations of adjacent sides simplifies the logic. This avoids hardcoding multiple conditional checks and makes the code cleaner and easier to maintain.
+
+3. **Set for Uniqueness**: By converting the selected colors into a set, the solution can easily check if all three colors are the same by checking if the length of the set is 1. This is a concise way to determine color equality.
+
+4. **Control Flow**: The use of a flag (`c`) to indicate if a valid combination was found is a simple and effective way to manage the output logic.
+
+Overall, the official solution is efficient and clear, making it easy to understand and modify if necessary. My initial approach was similar in logic but could have benefited from the use of sets and a more structured way to handle the combinations of adjacent sides. The official solution's use of tuples for combinations is particularly noteworthy, as it reduces complexity and enhances readability.
+INFO - Updated entry: In this task, the goal was to determine if there are three adjacent sides of a cube painted the same color based on given inputs. The cube has six sides, and the adjacency of sides was defined by specific combinations. The solution involved checking these combinations for each test case.
+
+The cor...,
+
+INFO - Metadata: {
+    "task_id": 1227
+}
+
+INFO - Updated entry: The official solution effectively checks for three adjacent sides of a cube that are painted the same color by using a list of tuples to represent the indices of the sides. This approach is efficient and straightforward, leveraging Python's set data structure to determine if all three colors in a...,
+
+INFO - Metadata: {
+    "task_id": 1227
+}
+
+INFO - LM call n parse attempt 1 / 3
+
+INFO - [Task id] 1227 [prompt] 
+You are a helpful assistant that writes a description of the given function written in the Python programming language.
+
+1) Do not mention the function name.
+2) Do not mention anything about helper functions.
+3) There might be some helper functions before the main function, but you only need to describe the main function.
+4) Try to summarize the function in no more than 6 sentences.
+5) Your response should be a single line of text.
+
+INFO - [Task id] 1227 [prompt] 
+def can_choose_three_adjacent_sides(T):
+    for _ in range(T):
+        # Read the colors of the six sides
+        colors = input().split()
+        
+        # Check the eight combinations of adjacent sides
+        if (colors[0] == colors[2] == colors[4] or  # F, L, T
+            colors[0] == colors[3] == colors[4] or  # F, R, T
+            colors[0] == colors[2] == colors[5] or  # F, L, D
+            colors[0] == colors[3] == colors[5] or  # F, R, D
+            colors[1] == colors[2] == colors[4] or  # B, L, T
+            colors[1] == colors[3] == colors[4] or  # B, R, T
+            colors[1] == colors[2] == colors[5] or  # B, L, D
+            colors[1] == colors[3] == colors[5]):    # B, R, D
+            print("YES")
+        else:
+            print("NO")
+
+T = int(input())
+can_choose_three_adjacent_sides(T)
+
+
+The main function is `can_choose_three_adjacent_sides`.
+INFO - [Task id] 1227 [generation text] The function processes a specified number of test cases, each involving the colors of six sides of a cube. For each test case, it checks if there are three adjacent sides that share the same color by evaluating eight specific combinations of sides. If any of these combinations match, it outputs "YES"; otherwise, it outputs "NO". The function reads input directly from the user for the colors of the sides. It effectively determines the possibility of selecting three adjacent sides of the same color for each test case. The results are printed immediately after evaluating each case.
+INFO - LM call n parse attempt 1 / 3
+
+INFO - [Task id] 1227 [prompt] 
+You are a helpful assistant that extracts important information from problems and solutions to aid in searchability and education.
+
+## Instructions
+- Read through the problem and solution carefully.
+- Reason out, step by step, in what scenarios this knowledge would be useful.
+- Focus on general patterns and situations to help connect this knowledge to new situations.
+- Then, include a list of keywords that are useful for searching this problem/solution pair.
+
+## Response format
+Respond in JSON, and follow the keys and expected format of the values strictly.
+
+The output should be formatted as a JSON instance that conforms to the JSON schema below.
+
+As an example, for the schema {"properties": {"foo": {"title": "Foo", "description": "a list of strings", "type": "array", "items": {"type": "string"}}}, "required": ["foo"]}
+the object {"foo": ["bar", "baz"]} is a well-formatted instance of the schema. The object {"properties": {"foo": ["bar", "baz"]}} is not well-formatted.
+
+Here is the output schema:
+```
+{"properties": {"scenarios": {"description": "In what scenarios will this knowledge be useful? Answer in a paragraph.", "title": "Scenarios", "type": "string"}, "keywords": {"description": "List of keywords that are useful for searching this problem/solution pair", "items": {"type": "string"}, "title": "Keywords", "type": "array"}}, "required": ["scenarios", "keywords"]}
+```
+
+INFO - [Task id] 1227 [prompt] 
+[Problem]
+    One day, Chef found a cube which has each of its sides painted in some color out of black, blue, red, green, yellow and orange.
+    Now he asks you to check if he can choose three sides such that they are pairwise adjacent and painted in the same color.
+
+    -----Input-----
+    - The first line of the input contains an integer T denoting the number of test cases.
+    - A single line of each test case contains six words denoting the colors of painted sides in the order: front, back, left, right, top and bottom, respectively.
+
+    -----Output-----
+    For each test case, output a single line containing the word "YES" or "NO" (without quotes) corresponding to the answer of the problem.
+
+    -----Constraints-----
+    - 1 ≤ T ≤  50000 
+    - Each color will be from the list {"black", "blue", "red", "green", "yellow", "orange"}
+
+    -----Subtasks-----
+    Subtask 1: (25 points)
+    - 1 ≤ T ≤  12000 
+    - For each test case there will be at most three different colors
+
+    Subtask 2: (75 points)
+    - Original constraints
+
+    -----Example-----
+    Input:
+    2
+    blue yellow green orange black green
+    green yellow green orange black green
+
+    Output:
+    NO
+    YES
+
+    -----Explanation-----
+
+    Example case 1.
+    There are no three sides with the same color.
+
+    Example case 2.
+    In this test case, the front, bottom and left sides are green (see picture).
+[/Problem]
+
+[Solution]
+
+    def can_choose_three_adjacent_sides(T):
+        for _ in range(T):
+            # Read the colors of the six sides
+            colors = input().split()
+        
+            # Check the eight combinations of adjacent sides
+            if (colors[0] == colors[2] == colors[4] or  # F, L, T
+                colors[0] == colors[3] == colors[4] or  # F, R, T
+                colors[0] == colors[2] == colors[5] or  # F, L, D
+                colors[0] == colors[3] == colors[5] or  # F, R, D
+                colors[1] == colors[2] == colors[4] or  # B, L, T
+                colors[1] == colors[3] == colors[4] or  # B, R, T
+                colors[1] == colors[2] == colors[5] or  # B, L, D
+                colors[1] == colors[3] == colors[5]):    # B, R, D
+                print("YES")
+            else:
+                print("NO")
+
+    T = int(input())
+    can_choose_three_adjacent_sides(T)
+
+[/Solution]
+
+INFO - [Task id] 1227 [generation text] 
+INFO - {
+    "scenarios": "This knowledge is useful in scenarios where one needs to determine the arrangement of colors on a cube, particularly in games, puzzles, or graphical applications where color adjacency matters. It can also be applied in computer graphics for rendering objects with specific color patterns, in robotics for object recognition, or in any situation where spatial relationships between colored surfaces are relevant. Additionally, this logic can be extended to similar problems involving three-dimensional objects with multiple faces and color constraints.",
+    "keywords": [
+        "cube",
+        "color adjacency",
+        "three sides",
+        "pairwise adjacent",
+        "color matching",
+        "algorithm",
+        "3D geometry",
+        "puzzle solving",
+        "computer graphics"
+    ]
+}
+INFO - {
+    "scenarios": "This knowledge is useful in scenarios where one needs to determine the arrangement of colors on a cube, particularly in games, puzzles, or graphical applications where color adjacency matters. It can also be applied in computer graphics for rendering objects with specific color patterns, in robotics for object recognition, or in any situation where spatial relationships between colored surfaces are relevant. Additionally, this logic can be extended to similar problems involving three-dimensional objects with multiple faces and color constraints.",
+    "keywords": [
+        "cube",
+        "color adjacency",
+        "three sides",
+        "pairwise adjacent",
+        "color matching",
+        "algorithm",
+        "3D geometry",
+        "puzzle solving",
+        "computer graphics"
+    ]
+}
+INFO - Updated entry: 
+[description for function: can_choose_three_adjacent_sides]
+The function processes a specified number of test cases, each involving the colors of six sides of a cube. For each test case, it checks if there are three adjacent sides that share the same color by evaluating eight specific combinatio...,
+
+INFO - Metadata: {
+    "task": 1227,
+    "code": "\ndef can_choose_three_adjacent_sides(T):\n    for _ in range(T):\n        # Read the colors of the six sides\n        colors = input().split()\n        \n        # Check the eight combinations of adjacent sides\n        if (colors[0] == colors[2] == colors[4] or ...
+

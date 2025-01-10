@@ -8,6 +8,7 @@ Unreleased experiments in [APPENDIX.md](APPENDIX.md)
 ## Introduction
 
 ### Cognitive architectures
+#### What is cognitive architecture?
 - Models of human cognition
 - Explicit instantiation of processes like
     - Perception
@@ -15,8 +16,34 @@ Unreleased experiments in [APPENDIX.md](APPENDIX.md)
     - Planning
 - Cannonical example: Soar `[1]`
 
+#### Why cognitive architectures?
+1. Bio-inspired components -- could give us a clue to intelligence:
+    - Distinct long-term memories (procedural, semantic, episodic) with different properties
+2. Complementary strengths with LLMs:
+    - LLMs provide broad task knowledge from pretraining
+    - Cognitive architectures add:
+        - Explicit grounding in environment
+        - Structured verification and multistep reasoning
+        - Coordinated use of multiple knowledge sources
+3. System-level benefits:
+    - Explainable: Memory formation and associations can be traced
+    - Editable: Explicit memories and processes can be modified
+    - Deliberate: Cognitive processes can be explicitly implemented rather than emerging unpredictably
+
 ### CoALA
 Cognitive architectures for language agents `[2]`: see this [summary](https://github.com/nicholaschenai/agi-potential-notes/blob/main/papers/coala.md).
+
+Key ideas:
+1. Systematizes diverse methods for LLM-based agents:
+    - Organizes existing architectures under a unified framework
+    - Highlights gaps and proposes actionable directions
+    - Standardizes terminology and components across different works
+2. Enhances LLM capabilities through structured components:
+    - Complements LLM's broad knowledge with explicit memory systems
+    - Supports deliberate decision-making through propose-evaluate-select procedures
+3. Bridges traditional cognitive architectures and modern LLMs:
+    - Replaces handcrafted rules with flexible LLM reasoning
+    - Makes text the standard internal representation
 
 Outline of a coding agent from the CoALA paper:
 
@@ -34,6 +61,34 @@ Outline of a coding agent from the CoALA paper:
 - Procedural:
     - Voyager `[4]` style code library for callable functions
     - If not callable (eg class), stored as retrievable text
+
+Training pseudocode:
+
+```
+For each training task:
+    Rollout: For each attempt (up to max_attempts):
+        a. If first attempt:
+            - Generate initial solution context
+        else:
+            - Generate critique based on previous attempts
+        b. Retrieve relevant memories using current context:
+            - From episodic memory (past transitions)
+            - From semantic memory (textbooks, reflections, summaries)
+            - From procedural memory (code library)
+        c. Generate code using retrieved context
+        d. Execute code and get environment feedback
+        e. Store transition in episodic memory:
+            (Task, Critique, Generated Code, Env Feedback, Success/Fail)
+        f. If execution successful, break loop
+    Generate and store semantic memories:
+        - Create episode summary
+        - Create reflection by comparing to solution
+    If successful:
+        - Generate skill description
+        - Add to procedural memory
+```
+
+During testing, only the rollout is used.
 
 ### AI for code
 For an overview of AI for code, see this [literature review](https://github.com/nicholaschenai/ai-for-code)
@@ -74,10 +129,12 @@ CoALA starts off with the competitive programming textbooks as long-term memory,
 - Each MBPP Plus task comes with one public test case. During evaluation, the for loop in the pseudocode is run for the one public test case and the success is determined by the assertion. The answer at the end of the loop (be it from successsful assertion or all tries) is used for evaluation on the private test cases.
 - As MBPP is an old benchmark, it is possible that LLMs have seen the dataset before. As such, we only look at the **relative change** from zero-shot pass@1 performance as an indicator.
 
-Tuning retrieval k:
+#### Hyperparameter tuning
+Before evaluation, we perform a search on some hyperparameters.
 
-Before evaluation, we perform a search on the optimal retrieval k for each model, 
-and use the k corresponding to the best performance on the APPS training set for evaluation.
+##### Tuning retrieval k
+
+We perform a search on the optimal retrieval k for each model corresponding to the best performance on the APPS training set
 
 | Model | k=3 | k=2 | k=1 |
 |-------|-----|-----|-----|
@@ -85,6 +142,15 @@ and use the k corresponding to the best performance on the APPS training set for
 | 4o 0806 | 72% | 78% | **80%** |
 
 Based on these results, we pick k=3 for 4o mini and k=1 for 4o 0806.
+
+##### Ablating episodic memory
+
+Using the best k, we ablate episodic memory to see if it is necessary for the performance of CoALA.
+
+| Model | with episodic | without episodic |
+|-------|-----|-----|
+| 4o mini | 77% | **78%** |
+| 4o 0806 | 80% | - |
 
 ## Results
 ### Accuracy comparison
@@ -104,6 +170,8 @@ Based on these results, we pick k=3 for 4o mini and k=1 for 4o 0806.
 - Usually recovers after seeing the warning message of wrong function / indentation, but there were a few occasions where it could not recover within the maximum number of retries
 
 ## Future Work
+- Need to get episodic right
+- Memory pruning
 
 ## Conclusion
 
