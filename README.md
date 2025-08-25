@@ -16,17 +16,25 @@ See the [report](report/README.md) for more details (work in progress).
 ## Installation
 
 ### Setup Instructions
-1. Clone the repository with submodules:
+1. Clone the repository with the required submodules:
 
 ```bash
-git clone --recursive https://github.com/nicholaschenai/coala_coder_demo.git
+git clone https://github.com/nicholaschenai/coala_coder_demo.git
 cd coala_coder_demo
+git submodule update --init cognitive_base agent_expt_suite
+```
+
+**Note:** The `final_results` submodule contains experimental results and is quite large (~1 GB). It is not required for running experiments since results will be generated in your local `results/` folder. 
+
+If you want to access the pre-computed experimental results, you can clone it separately:
+```bash
+git submodule update --init final_results
 ```
 
 2. Create and activate the conda environment using the provided environment.yml:
 
 ```bash
-conda env create -f environment.yml python=3.10
+conda env create -f environment.yml
 conda activate coala_coder_demo
 ```
 
@@ -44,23 +52,12 @@ Azure OpenAI:
 export AZURE_OPENAI_API_KEY="YOUR_KEY_HERE"
 export AZURE_OPENAI_ENDPOINT="ENDPOINT_URL_HERE"
 export OPENAI_API_VERSION="2023-07-01-preview"
-export AZURE_OPENAI_DEPLOYMENT_NAME="{'gpt-4-1106-preview': 'YOUR_DEPLOYMENT_NAME_HERE', 'gpt-4o-mini-2024-07-18': 'YOUR_DEPLOYMENT_NAME_HERE'}"
-```
-
-## Reproducing experiments
-
-### Baseline ReAct
-GPT-4o mini:
-```bash
-bash scripts/react_test_4o_mini.sh
-```
-
-GPT-4o-08-06:
-```bash
-bash scripts/react_test_4o_0806.sh
+export AZURE_OPENAI_DEPLOYMENT_NAME="{'gpt-4o-2024-08-06': 'YOUR_DEPLOYMENT_NAME_HERE', 'gpt-4o-mini-2024-07-18': 'YOUR_DEPLOYMENT_NAME_HERE'}"
 ```
 
 ### Preparing the semantic memory
+The semantic memory consists of competitive programming textbooks. 
+This is used for RAG and CoALA.
 
 A checkpoint has been provided in `final_results/comp_prog_sem/ckpt` for convenience.
 
@@ -73,116 +70,68 @@ bash scripts/load_comp_prog_coala.sh
 it will be saved in `results/comp_prog_sem/`, where the checkpoint will be saved in `ckpt`.
 
 NOTE: all experiments that use only the semantic memory below (RAG, CoALA training) uses the provided checkpoint in `final_results/comp_prog_sem/ckpt`. 
-if you want to use the one loaded from scratch, change the `--clone_ckpt` argument to point to `results/comp_prog_sem/ckpt`
+If you want to use the one loaded from scratch, change the `--clone_ckpt` argument to point to `results/comp_prog_sem/ckpt`
 
-### CoALA train
+## Reproducing experiments
+See [REPRODUCTION.md](REPRODUCTION.md)
 
-#### Hyperparameter tuning
-First run training to get the checkpoint with various memories.
-We run with different retrieval k to tune it via train accuracies.
-
-GPT-4o-mini
-```bash
-bash scripts/coala_train_apps_k_1_4o_mini.sh
-bash scripts/coala_train_apps_k_2_4o_mini.sh
-bash scripts/coala_train_apps_k_3_4o_mini.sh
-```
-
-GPT-4o-08-06
-```bash
-bash scripts/coala_train_apps_k_1_4o_0806.sh
-bash scripts/coala_train_apps_k_2_4o_0806.sh
-bash scripts/coala_train_apps_k_3_4o_0806.sh
-```
-
-Note that when loading the APPS dataset for the first time, 
-there will be an initial process to execute the solutions 
-to the problems to verify that the solutions are correct. 
-
-We have provided the precomputed result in data_tools/cache (will be loaded by default),
-but if that is deleted, the process will take a while.
-
-Now, we also ablate episodic memory to see if it is necessary for the performance of CoALA.
-```bash
-bash scripts/coala_train_apps_k_3_disable_episodic_4o_mini.sh
-bash scripts/coala_train_apps_k_1_disable_episodic_4o_0806.sh
-```
-
-### CoALA test
-Now we proceed to use the memories for evaluation:
-(minor caveat: manually delete the episodic/episode_state.json file before running the script to start fresh else it will count episodes from training)
-
-We use the k corresponding to the best performance on APPS for each model.
-
-GPT-4o-mini:
-```bash
-bash scripts/coala_test_k_3_disable_episodic_4o_mini.sh
-```
-
-GPT-4o-08-06:
-```bash
-bash scripts/coala_test_k_1_4o_0806.sh
-```
-
-### RAG baseline
-We use the k corresponding to the best performance on APPS for each model.
-To run the RAG agent with GPT-4o-mini:
-
-```bash
-bash scripts/rag_test_k_3_4o_mini.sh
-```
-
-GPT-4o-08-06:
-```bash
-bash scripts/rag_test_k_1_4o_0806.sh
-```
-
-### Data analysis
-**TODO**
-
-<!-- Plot accuracies, get error analysis:
-
-```bash
-python scripts/results_analysis.py
-``` -->
-
-
-### Data outputs
-**TODO**
-
+## Data outputs
 Experiment outputs will be saved in the following locations:
-- Logs: `logs/`
+- Logs: `log_files/`
 - Results: `results/`
 
-Example structure of a result folder
+### Test Mode Structure
+Example structure of a result folder for **test mode** experiments:
 ```
-coala_test_k_3_4o_0806/
+coala_test_k_1_4o_0806/
 ├── args.json                  # Experiment configuration and hyperparameters
 ├── samples_eval_results.json  # MBPP Plus evaluation results
 ├── samples.jsonl              # Agent output used for evaluation
-├── result_dict.json          # Public test case execution result
-├── ckpt/                     # Checkpoint directory containing:
+├── result_dict.json           # Public test case execution result
+├── ckpt/                      # Checkpoint directory containing:
 │   ├── skill/               # Learned skills, executable code (procedural)
 │   ├── non_func/            # Non-executable code (procedural)
 │   ├── episodic/            # Episodic memory
 │   ├── reflections/         # Reflection memory (semantic)
 │   ├── summaries/           # Summary memory (semantic)
 │   └── semantic/            # Semantic memory of competitive programming textbooks
-├── test_outputs/             # logs and final output per problem
+└── test_outputs/             # Logs and final output per problem
+    └── {problem_id}/         # Each folder named after the problem ID containing:
+        ├── logfile.log        # Raw logs
+        ├── messages.json     # Canonical messages (see CoalaMessageThread and agent for definition)
+        ├── output_i.json     # Outputs for attempt i
+        └── output.json       # Final output
 ```
 
-<!-- Accuracy plot saved in `report/assets/accuracy_comparison.png`
-Error analysis saved in `report/assets/4o_mini_status_differences.csv` and `report/assets/4_1106_status_differences.csv` -->
+### Train Mode Structure
+Example structure of a result folder for **train mode** experiments, which is similar to the test mode structure but with some differences:
+```
+coala_train_apps_k_1_4o_0806/
+├── args.json
+├── ckpt/
+└── train_outputs/             # Training logs and outputs per problem
+    └── {problem_id}/
+        ├── ...                # Same files as test mode
+        └── training_data.json # Result of reflections, summaries, and skill descriptions
+```
+
+**Key differences in train mode:**
+- No evaluation files (`samples_eval_results.json`, `samples.jsonl`, `result_dict.json`)
+- Uses `train_outputs/` instead of `test_outputs/`
+- Each problem folder contains an additional `training_data.json` file with learning artifacts 
 
 ## Project Structure
 ```
 .
-├── cognitive_base/      # Cognitive architecture primitives
-├── agent_expt_suite/    # tools for running experiments with agents
+├── agent_expt_suite/   # tools for running experiments with agents
+├── analysis_scripts/   # scripts for analyzing results
+├── cognitive_base/     # Cognitive architecture primitives
+├── config/             # argparsers with configs. 
 ├── data_tools/         # tools for custom data processing on APPS
-├── report/             # Documentation and analysis
-├── scripts/            # Running scripts
-└── final_results/      # Experiment outputs
+├── docs/               # steps to reproduce experiments
+├── final_results/      # Experiment outputs
+├── report/             # Analysis of results
+└── scripts/            # Running scripts for train/test
 ```
 
 ## Other resources
